@@ -1,0 +1,170 @@
+:root{
+    --fontcolor: #222222;
+    --color_1: #e4eaf7;
+    --backcolor_2: #596B8D;
+    --color_3: #7E8C91;
+    --color_4: #7e7d81;
+}
+
+a{
+    text-decoration: none;
+}
+
+header{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr ;
+    background-color: var(--backcolor_2);
+    padding: 7px 30px;
+}
+
+nav{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: end;
+    align-items: center;
+}
+
+.logo{
+    color: var(--color_1);
+    padding: 0px;
+    margin: 0px;
+}
+
+.navItem{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px var(--backcolor_2);
+    color: var(--backcolor_2);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 10px;
+    width: 200px;
+}
+
+.navItem:hover{
+    box-shadow: inset -2px -2px 2px var(--color_1);
+    background-color: var(--color_4);
+    color: var(--color_1);
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+    /*Header*/
+
+    header{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    nav{
+        justify-items: center;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    /*Header*/
+
+    header{
+        grid-template-columns: 1fr;
+        grid-template-rows: 40px 1fr;
+    }
+
+    nav{
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        justify-items: center;
+    }
+}
+
+
+<!-- -----------------Banner---------------- -->
+
+.bannerSection{
+        height: 350px;
+        margin: 50px;
+    }
+
+.banner{
+    display: grid;
+    height: 350px;
+    grid-template-columns: 0.5fr 1fr;
+    justify-content: center;
+    background-image: linear-gradient(to top, rgba(125, 126, 179, 0.048), rgba(18, 128, 192, 0.103)), url("/public/img/robobanner.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position: start;
+    border-radius: 30px;
+    padding-top: 30px;
+}
+
+.textBanner{
+    color: var(--fontcolor);
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px 50px;
+}
+
+.textBanner span{
+    color: var(--backcolor_2);
+
+}
+
+.bannerBtn{
+    background-color: var(--backcolor_2);
+    color: var(--color_1);
+    margin: 25px 50px;
+    padding: 20px 25px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.bannerBtn:hover{
+    box-shadow: 5px 5px 5px var(--fontcolor);
+    background-color: var(--color_4);
+}
+
+.bannerBtn:active{
+    background-color: var(--color_1);
+    color: var(--backcolor_2);
+}
+
+.textSection{
+    height: 350px;
+    margin: 0 auto;
+    background-image: linear-gradient(to top, rgba(125, 126, 179, 0.048), rgba(18, 128, 192, 0.103));
+    border-radius: 30px;
+
+}
+
+.textSection h2{
+    font-size: 35px;
+    color: var(--backcolor_2);
+    margin-left: 50px;
+}
+
+.textSection p{
+    margin: 0 50px;
+    text-align: justify;
+    font-size: 16px;
+
+}
+
+
+
+
+@media screen and (max-width: 1000px) {
+    .banner{
+        background-image: linear-gradient(to top, rgba(222, 222, 223, 0.849), rgba(226, 240, 248, 0.938));
+    }
+
+}
