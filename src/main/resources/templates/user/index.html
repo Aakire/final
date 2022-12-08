@@ -6,97 +6,62 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 </head>
 <body>
-<header>
-    <a th:href="@{/}">
-        <h1 class="logo">ROBO</h1>
-    </a>
-    <nav>
-        <a>
-            <button class="navItem">Избранное</button>
+<section class="main">
+    <header>
+        <a th:href="@{/}">
+            <h1 class="logo">ROBO</h1>
         </a>
-        <a th:href="@{/cart}">
-            <button class="navItem">
-                Корзина
-            </button>
-        </a>
-            <form method="post" th:action="@{/logout}">
-                <button class="navItem">
-                    Выйти
-                </button>
-            </form>
-
-    </nav>
-</header>
-<div class="bannerSection">
-        <div class="banner">
-            <p class="textBanner">Робототехнические конструкторы <br />
-                <span>для образования детей</span><br />
-            </p>
-            <a th:href="@{/product}">
-            <button class="bannerBtn">Показать товары</button>
+        <nav>
+            <a>
+                <button class="navItem">Избранное</button>
             </a>
-        </div>
-</div>
+            <a th:href="@{/cart}">
+                <button class="navItem">
+                    Корзина
+                </button>
+            </a>
+                <form method="post" th:action="@{/logout}">
+                    <button class="navItem">
+                        Выйти
+                    </button>
+                </form>
 
-<h3>Главная страница магазина</h3>
-<form method="post" th:action="@{/logout}">
-    <input type="submit" value="Выйти из личного кабинета">
-</form>
-<br>
-<form method="get" th:action="@{/cart}">
-    <input type="submit" value="Корзина">
-</form>
+        </nav>
+    </header>
+    <div class="bannerSection">
+            <div class="banner">
+                <p class="textBanner">Робототехнические конструкторы <br />
+                    <span>для образования детей</span><br />
+                </p>
+                <a th:href="@{/product}">
+                <button class="bannerBtn">Показать товары</button>
+                </a>
+            </div>
+    </div>
+    <div class="contactsSection">
+        <h1 classN="tittleissuePoints"> Адреса пунктов выдачи в России: </h1>
+        <div class="issuePoints">
 
-<form method="get" th:action="@{/orders}">
-    <input type="submit" value="История заказов">
-</form>
-<br>
-<br>
-<form th:method="POST" th:action="@{/product/search}">
-    <fieldset>
-    <legend>Выберите параметр для сортировка: </legend>
-        <br>
-        <label for="search">Поиск по наименованию</label>
-        <input name="search" id="search">
-        <br>
-        <p>Цена, ₽</p>
-        <label for="ot">От</label>
-        <input type="text" name="ot" id="ot">
-        <label for="do">До</label>
-        <input type="text" name="do" id="do">
-        <br>
-        <br>
-        <div>
-            <label for="ascending_price">Отсортировать по возрастанию цены</label>
-            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
-            <br>
-            <br>
-            <label for="descending_price">Отсортировать по убыванию цены</label>
-            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
-            <p>Категория товаров: </p>
-            <label for="furniture">Мебель</label>
-            <input type="radio" id="furniture" name="contact" value="furniture">
-            <label for="appliances">Бытовая техника</label>
-            <input type="radio" id="appliances" name="contact" value="appliances">
-            <label for="clothes">Одежда</label>
-            <input type="radio" id="clothes" name="contact" value="clothes">
-            <br>
-            <br>
-            <input type="submit" value="Найти">
+            <div class=adress>
+                <h2>Офис в Москве</h2>
+                <p> Набережная ул., д. 15 офис 18</p>
+                <h3>Телефон: </h3><p>+7 (945) 945-55-70</p>
+                <h3>График работы: </h3><p>Понедельник-Пятница 9:00 - 18:00</p>
+            </div>
+            <div class="adress"}>
+                <h2>Офис в Новосибирске</h2>
+                <p> Лесная ул., д. 17</p>
+                <h3>Телефон: </h3><p>+7 (383) 730-19-83</p>
+                <h3>График работы: </h3><p>Понедельник-Пятница 9:00 - 18:00</p>
+            </div>
+            <div class="adress">
+                <h2>Офис в Владивостоке</h2>
+                <p>  Заводская ул., д. 12 офис 5</p>
+                <h3>Телефон: </h3><p>+7 (923) 885-24-93</p>
+                <h3>График работы: </h3><p>Понедельник-Пятница 9:00 - 18:00</p>
+            </div>
         </div>
-    </fieldset>
-    <br>
-</form>
-<h3>Доступные товары: </h3>
-<hr>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить в корзину</a>
-    <hr>
-</div>
+    </div>
 <footer>
     <div><h1 class="logo">ROBO</h1></div>
     <div>
@@ -106,5 +71,6 @@
         </p>
     </div>
 </footer>
+</section>
 </body>
 </html>

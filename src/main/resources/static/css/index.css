@@ -10,6 +10,11 @@ a{
     text-decoration: none;
 }
 
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
 /*--------------------Header--------------------*/
 
 header{
@@ -192,4 +197,51 @@ footer p{
         grid-template-columns: 1fr;
         grid-template-rows: 45px 1fr;
     }
+}
+
+/*--------------CONTACTS-----------*/
+
+.contactsSection h2, h3, p {
+    color: var(--fontcolor);
+    line-height: 120%;
+    margin: 10px 30px;
+}
+
+.contactsSection{
+    margin: 0 auto;
+}
+
+.contactsSection h2{
+    font-size: 20px;
+}
+
+.contactsSection h3{
+    font-size: 16px;
+}
+
+.contactsSection p{
+    font-size: 14px;
+}
+
+.contactsSection h1{
+    color: var(--backcolor_2);
+    font-size: 25px;
+    padding: 8px 45px;
+}
+
+.issuePoints{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 20px;
+}
+
+.adress{
+    border-bottom: 2px solid var(--color_4);
+    margin: 20px;
+    background-color: var(--color_1);
+    border-radius: 20px;
+    gap: 30px;
+    max-width: 450px;
 }
