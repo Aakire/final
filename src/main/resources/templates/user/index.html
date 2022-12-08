@@ -12,9 +12,6 @@
     </a>
     <nav>
         <a>
-            <button class="navItem">Наши контакты</button>
-        </a>
-        <a>
             <button class="navItem">Избранное</button>
         </a>
         <a th:href="@{/cart}">
@@ -22,6 +19,12 @@
                 Корзина
             </button>
         </a>
+            <form method="post" th:action="@{/logout}">
+                <button class="navItem">
+                    Выйти
+                </button>
+            </form>
+
     </nav>
 </header>
 <div class="bannerSection">
@@ -29,7 +32,7 @@
             <p class="textBanner">Робототехнические конструкторы <br />
                 <span>для образования детей</span><br />
             </p>
-            <a>
+            <a th:href="@{/product}">
             <button class="bannerBtn">Показать товары</button>
             </a>
         </div>

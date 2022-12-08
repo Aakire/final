@@ -1,4 +1,4 @@
-package com.example.springSecurityApplication.controllers;
+package com.example.springSecurityApplication.controllers.product;
 
 import com.example.springSecurityApplication.repositories.ProductRepository;
 import com.example.springSecurityApplication.services.ProductService;
