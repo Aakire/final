@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
 </head>
 <body>
-<h3>Регистрация</h3>
-<form method="post" th:action="@{/authentication/registration}" th:object="${person}">
-    <label for="username">Введите логин: </label><br>
-    <input type="text" th:field="*{login}" placeholder="Введите ваш логин" name="username" id="username">
-    <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
-    <br>
-    <label for="password">Введите пароль: </label>
-    <br>
-    <input type="password" th:field="*{password}" placeholder="Введите ваш пароль" name="password" id="password">
-    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-    <br>
-    <input type="submit" value="Зарегистрироваться">
-    <div th:if="${param.error}" style="color: red">
-        Неправильный логин или пароль
+    <div class="main">
+        <div class="choice">
+            <button class="bar" id="unactive"><a href="/authentication/login">Авторизация</a></button>
+            <button class="bar" id="active">
+                <a href="/authentication/registration">Регистрация</a>
+            </button>
+        </div>
+
+        <div id="wrapper">
+            <form method="post" th:action="@{/authentication/registration}"  th:object="${person}" id="signin">
+
+            <input type="text" th:field="*{login}" placeholder="Введите ваш логин" name="username" id="username">
+
+            <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+
+            <input type="password" th:field="*{password}" placeholder="Введите ваш пароль" name="password" id="password">
+
+            <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+
+            <button type="submit" >&#xf0da;</button>
+
+            <div th:if="${param.error}" style="color: red">
+                Неправильный логин или пароль
+            </div>
+
+            </form>
+        </div>
     </div>
-</form>
-<a href="/authentication/login">Авторизация</a>
 </body>
 </html>
