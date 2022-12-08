@@ -1,0 +1,99 @@
+.topDesk{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    padding: 15px 40px;
+    align-items: center;
+    background-color: var(--backcolor_2);
+    margin-bottom: 30px;
+}
+
+.logout{
+    justify-self: end;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 2px 2px var(--backcolor_2);
+    color: var(--backcolor_2);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px 10px;
+    width: 350px;
+}
+
+.logout:hover{
+    
+    box-shadow: inset -2px -2px 2px var(--color_1);
+    background-color: var(--color_4);
+    color: var(--color_1);
+    
+}
+
+.topDesk h1{    
+    color: var(--color_1);
+    padding: 0px;
+    margin: 0px;    
+}
+
+.addBtn{
+    border: none;
+    border-radius: 6px;
+    background-color: var(--backcolor_2);
+    box-shadow: 2px 2px var(--fontcolor);
+    color: var(--color_1);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px 10px;
+    width: 200px;
+    margin: 30px;
+}
+
+.addBtn a{
+    color: var(--color_1);
+}
+
+.addDesk{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+}
+
+label{
+    font-size: 18px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+
+}
+
+input{
+    width: 300px;
+    min-height: 20px;
+    font-size: 14px;
+    padding: 3px;
+}
+
+#description, #seller{
+    width: 900px;
+}
+
+#category{
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.addFiles{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 20px;
+}
+
+#file{
+    font-size: 16px;
+}
+

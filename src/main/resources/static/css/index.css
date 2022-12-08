@@ -12,9 +12,11 @@
     font-family: 'Open Sans', 'sans-serif', 'FontAwesome';
     margin: 0px;
 }
+
 body{
     background-color: var(--color_1);;
 }
+
 a{
     text-decoration: none;
 }
@@ -44,6 +46,7 @@ nav{
     color: var(--color_1);
     padding: 0px;
     margin: 0px;
+    cursor: pointer;
 }
 
 .navItem{

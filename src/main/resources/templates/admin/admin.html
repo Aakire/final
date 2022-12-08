@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет администратора</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" href="../../static/css/admin.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
 </head>
 <body>
-<h3>Личный кабинет администратора</h3>
-<form method="post" th:action="@{/logout}">
-    <input type="submit" value="Выйти из личного кабинета">
-</form>
-<a href="admin/product/add">Добавить товар</a>
-<hr>
+<div class="adminDesk">
+
+    <div class="topDesk">
+        <a th:href="@{/}">
+            <h1 class="logo">ROBO</h1>
+        </a>
+        <h1>Кабинет администратора</h1>
+        <form method="post" th:action="@{/logout}" >
+            <button type="submit" class="logout">Выйти из личного кабинета</button>
+        </form>
+    </div>
+
+
+
+<button class="addBtn"><a href="admin/product/add">Добавить товар</a></button>
+
 <div th:each="product : ${products}">
     <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
     <p th:text="'Описание: ' + ${product.getDescription()}"></p>
@@ -21,6 +33,7 @@
     <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
     <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
     <hr>
+</div>
 </div>
 </body>
 </html>
