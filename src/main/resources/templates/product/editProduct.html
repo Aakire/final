@@ -22,14 +22,14 @@
     <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
     <br>
     <br>
-    <label for="warehouse">Введите склад: </label>
-    <input type="text" th:field="*{warehouse}" placeholder="Склад" id="warehouse">
-    <div style="color: red" th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
+    <label for="vendorcode">Введите артикул: </label>
+    <input type="text" th:field="*{vendorcode}" placeholder="Артикул" id="vendorcode">
+    <div style="color: red" th:if="${#fields.hasErrors('vendorcode')}" th:errors="*{vendorcode}"></div>
     <br>
     <br>
-    <label for="seller">Введите данные о продавце: </label>
-    <textarea th:field="*{seller}" placeholder="Продавец" id="seller"></textarea>
-    <div style="color: red" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+    <label for="producingcountry">Введите данные о стране-изготовителе: </label>
+    <input th:field="*{producingcountry}" placeholder="Страна-изготовитель" id="producingcountry">
+    <div style="color: red" th:if="${#fields.hasErrors('producingcountry')}" th:errors="*{producingcountry}"></div>
     <br>
     <br>
     <label for="category">Введите категорию товара: </label>

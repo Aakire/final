@@ -72,11 +72,11 @@ label{
 input{
     width: 300px;
     min-height: 20px;
-    font-size: 14px;
+    font-size: 16px;
     padding: 3px;
 }
 
-#description, #seller{
+#description{
     width: 900px;
 }
 
@@ -93,7 +93,5 @@ input{
     margin: 20px;
 }
 
-#file{
-    font-size: 16px;
-}
+
 

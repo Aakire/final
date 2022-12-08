@@ -19,6 +19,18 @@ public class Product {
     @NotEmpty(message = "Наименование товара не может быть пустым")
     private String title;
 
+    @Column(name = "vendorcode", nullable = false, columnDefinition = "text", unique = true)
+    @NotEmpty(message = "Артикул товара не может быть пустым")
+    private String vendorcode;
+
+    public String getVendorcode() {
+        return vendorcode;
+    }
+
+    public void setVendorcode(String vendorcode) {
+        this.vendorcode = vendorcode;
+    }
+
     @Column(name = "description", nullable = false, columnDefinition = "text")
     @NotEmpty(message = "Описание товара не может быть пустым")
     private String description;
@@ -27,13 +39,9 @@ public class Product {
     @Min(value = 1, message = "Цена не может быть отрицательной или нулевой")
     private float price;
 
-    @Column(name = "warehouse", nullable = false)
-    @NotEmpty(message = "Склад по нахождению товара не может быть пустым")
-    private String warehouse;
-
-    @Column(name = "seller", nullable = false,columnDefinition = "text")
+    @Column(name = "producingcountry", nullable = false, columnDefinition = "text")
     @NotEmpty(message = "Информация о продавце не может быть пустым")
-    private String seller;
+    private String producingcountry;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> imageList = new ArrayList<>();
@@ -93,20 +101,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getWarehouse() {
-        return warehouse;
+    public String getProducingcountry() {
+        return producingcountry;
     }
 
-    public void setWarehouse(String warehouse) {
-        this.warehouse = warehouse;
-    }
-
-    public String getSeller() {
-        return seller;
-    }
-
-    public void setSeller(String seller) {
-        this.seller = seller;
+    public void setProducingcountry(String producingcountry) {
+        this.producingcountry = producingcountry;
     }
 
     public LocalDateTime getDateTime() {

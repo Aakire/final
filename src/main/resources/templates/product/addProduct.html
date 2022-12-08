@@ -32,14 +32,15 @@
             <input type="number" th:field="*{price}" min="1" step="0.00" id="price">
                 <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
 
-            <label for="warehouse">Введите склад: </label>
-            <input type="text" th:field="*{warehouse}" placeholder="Склад" id="warehouse">
-                <div style="color: red" th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
-            <br>
+            <label for="vendorcode">Введите артикул: </label>
+            <input type="text" th:field="*{vendorcode}" placeholder="Артикул" id="vendorcode">
+                <div style="color: red" th:if="${#fields.hasErrors('vendorcode')}" th:errors="*{vendorcode}"></div>
 
-            <label for="seller">Введите данные о продавце: </label>
-            <textarea th:field="*{seller}" placeholder="Продавец" id="seller"></textarea>
-                <div style="color: red" th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+
+            <label for="producingcountry">Введите данные о стране изготовителе: </label>
+            <input type="text" th:field="*{producingcountry}" placeholder="Страна-производитель" id="producingcountry">
+
+                <div style="color: red" th:if="${#fields.hasErrors('producingcountry')}" th:errors="*{producingcountry}"></div>
 
 
             <label for="category">Введите категорию товара: </label>
@@ -51,11 +52,11 @@
 
             <p style="color: red">Вы можете добавить до 5 фотографий. Первая фотография не может быть пустой т.к она будет являться главной</p>
             <div class="addFiles">
-                <input type="file" name="file_one" id="file">
-                <input type="file" name="file_two" id="file" >
-                <input type="file" name="file_three" id="file">
-                <input type="file" name="file_four" id="file">
-                <input type="file" name="file_five" id="file">                
+                <input type="file" name="file_one" >
+                <input type="file" name="file_two" >
+                <input type="file" name="file_three" >
+                <input type="file" name="file_four" >
+                <input type="file" name="file_five" >
             </div> 
             <input type="submit" value="Добавить товар" class="addBtn">           
         </form>
