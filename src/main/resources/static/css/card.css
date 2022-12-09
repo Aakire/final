@@ -1,29 +1,7 @@
 .productInfo p{
     margin: 10px 0px 0px 0px;
   }
-  
-  .favoriteBtn{
-    border: none;
-    justify-self: end;
-    color: #7E8C91;  
-    z-index: 1;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: transform .4s ease-out;
-  }
-  
-  .favoriteBtn img{
-    width: 40px;
-  }
 
-  .favoriteBtn:hover {
-    transform: scale(1.25); 
-  }
-  
-  .imgContainer{
-    height: 200px;
-  }
-  
   .productImg{
     height: 190px; 
     display: block;
@@ -34,6 +12,8 @@
   .productTittle{
     font-size: 20px;
     font-weight: bold;
+    color: var(--blue);
+    text-decoration: none;
   }
   
   .price{
@@ -50,14 +30,15 @@
 
   .productItem{
     display: grid;
-    grid-template-rows: 20px 200px 1fr 60px;
-    border: 1.5px solid  var(--color_3);
+    grid-template-rows: 200px 1fr 60px;
+    border: 2px solid  var(--color_3);
     border-radius: 25px;
-    padding: 20px;  
+    padding: 20px 40px;
     align-items: center;
     transition: box-shadow 0.5s ease-out;
-    max-width: 360px; 
-    min-height: 415px; 
+    max-width: 290px;
+    min-height: 300px;
+    background-color: white;
   }
   
   .productItem:hover{
@@ -130,3 +111,7 @@
     background-color: var(--color_4);
     box-shadow: 5px 5px 5px var(--color_3);
   }
+
+
+  /*---------SEARCH BLOCK----------------*/
+

@@ -6,6 +6,7 @@
     --backcolor_2: rgb(73, 78, 85);
     --color_3: #7E8C91;
     --color_4: #7e7d81;
+    --blue: rgb(53, 69, 141);
 }
 
 *{
@@ -24,6 +25,7 @@ a{
 .main{
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 /*--------------------Header--------------------*/
@@ -105,8 +107,9 @@ nav{
 /* -----------------Banner---------------- */
 
 .bannerSection{
-        height: 350px;
-        margin: 50px;
+    height: 350px;
+    margin: 50px;
+    flex: 1;
     }
 
 .banner{
@@ -190,18 +193,14 @@ nav{
 
 footer{
     display: grid;
-    grid-template-columns: 70px 2fr;
+    grid-template-columns: 70px 1fr 1fr 1fr;
     background-color: var(--backcolor_2);
-    padding: 30px;
+    padding: 10px 20px;
     justify-items: center;
     align-items: center;
     gap: 30px;
-    margin-top: 50px;
-}
-
-footer p{
+    margin-top: 30px;
     color: var(--color_1);
-    font-size: 14px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -213,49 +212,34 @@ footer p{
 
 /*--------------CONTACTS-----------*/
 
-.contactsSection h2, h3, p {
-    color: var(--fontcolor);
-    line-height: 120%;
-    margin: 10px 30px;
+footer h2, footer h3, footer p{
+    color: var(--color_1);
+    line-height: 100%;
+    margin: 7px;
 }
 
-.contactsSection{
-    margin: 0 auto;
-}
-
-.contactsSection h2{
-    font-size: 20px;
-}
-
-.contactsSection h3{
+footer h2{
     font-size: 16px;
 }
 
-.contactsSection p{
+footer h3{
     font-size: 14px;
 }
 
-.contactsSection h1{
-    color: var(--backcolor_2);
-    font-size: 25px;
-    padding: 8px 45px;
+span{
+    font-size: 12px;
+    font-weight: 400;
 }
 
+footer p{
+    font-size: 12px;
+}
 .issuePoints{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-content: space-evenly;
     align-items: center;
-    margin: 20px;
 }
 
-.adress{
-    border-bottom: 2px solid var(--color_4);
-    margin: 20px;
-    background-color: var(--color_1);
-    border-radius: 20px;
-    gap: 30px;
-    max-width: 450px;
-}
 
 

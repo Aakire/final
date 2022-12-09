@@ -26,16 +26,15 @@
                 Выйти
             </button>
         </form>
-
     </nav>
 </header>
 
 
 <div class="sort">
-    <form th:method="POST" th:action="@{/product/search}">
-        <fieldset>
+    <form th:method="POST" th:action="@{/product/search}" >
+        <fieldset  class="searchBlock">
+            
             <legend>Выберите параметр для сортировки: </legend>
-            <br>
             <label for="search">Поиск по наименованию</label>
             <input name="search" id="search" th:value="*{value_search}">
             <br>
@@ -70,8 +69,8 @@
 </div>
 
 <div class="resultProduct">
-    <h3>Результат</h3>
-    <div th:each="product : ${search_product}">
+    <h3>Результат: </h3>
+    <div th:each="product : ${search_product}" class="productItem">
         <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
         <br>
         <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
@@ -84,15 +83,15 @@
     </div>
 </div>
 
+<d
 
-
+<h3> Все товары: </h3>
 <div class="allProduct">
-    <h3>Доступные товары: </h3>
 
-    <div th:each="product : ${products}" class="card">
-        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" class="imgContainer">
+    <div th:each="product : ${products}" class="productItem">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" class="productImg">
 
-        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" class="productTittle"></a>
 
         <div class="productPrice"> 
             <p class="price">Цена: <br />
@@ -102,7 +101,27 @@
     </div>
 </div>
 
-
+<footer>
+    <div><h1 class="logo">ROBO</h1></div>
+    <div class=adress>
+        <h2>Офис в Москве</h2>
+        <p> Набережная ул., д. 15 офис 18</p>
+        <h3>Телефон:  <span>+7 (945) 945-55-70</span></h3>
+        <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
+    </div>
+    <div class="adress"}>
+        <h2>Офис в Новосибирске</h2>
+        <p> Лесная ул., д. 17</p>
+        <h3>Телефон:  <span>+7 (383) 730-19-83</span></h3>
+        <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
+    </div>
+    <div class="adress">
+        <h2>Офис в Владивостоке</h2>
+        <p>  Заводская ул., д. 12 офис 5</p>
+        <h3>Телефон:  <span>+7 (923) 885-24-93</span></h3>
+        <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
+    </div>
+</footer>
 </body>
 <script type="text/javascript" th:src="@{/js/index.js}" src="../../static/js/index.js"></script>
 </html>

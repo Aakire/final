@@ -9,7 +9,7 @@
   
   .productSection h2{
     text-align: center;
-    margin: 0 50px;
+    margin: 50px;
   }
   
   .allProduct{
@@ -17,5 +17,5 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     line-height: 150%;
-    margin: 0px 15px;    
+    margin: 50px 15px;
   }
