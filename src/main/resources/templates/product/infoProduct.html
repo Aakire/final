@@ -3,18 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Информация о товаре</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/info.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/slider.css}">
+    <script src="https://itchief.ru/examples/libs/ui-components/itc-slider/itc-slider.js" defer></script>
+
 </head>
 <body>
-<h3>Товар</h3>
-<p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-<p th:text="'Артикул: ' + ${product.getVendorcode()}"></p>
-<p th:text="'Описание: ' + ${product.getDescription()}"></p>
-<p th:text="'Цена: ' + ${product.getPrice()}"></p>
-<p th:text="'Страна-изготовитель: ' + ${product.getProducingcountry()}"></p>
-<p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+<header>
+    <a th:href="@{/}">
+        <h1 class="logo">ROBO</h1>
+    </a>
+    <nav>
+        <a>
+            <button class="navItem">Избранное</button>
+        </a>
+        <a th:href="@{/cart}">
+            <button class="navItem">
+                Корзина
+            </button>
+        </a>
+        <form method="post" th:action="@{/logout}">
+            <button class="navItem">
+                Выйти
+            </button>
+        </form>
 
-<div th:each="img : ${product.getImageList()}">
+    </nav>
+</header>
+<div class="productContainer">
+    <div class="container">
+        <div class="itc-slider" data-slider="itc-slider" data-loop="false" data-autoplay="false">
+            <div class="itc-slider__wrapper">
+                <div class="itc-slider__items">
+                    <div class="itc-slider__item">
+                        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" >
+                    </div>
+                    <div class="itc-slider__item">
+                        <img th:src="'/img/' + ${product.imageList[1].getFileName()}" >
+                    </div>
+                    <div class="itc-slider__item">
+                        <img th:src="'/img/' + ${product.imageList[2].getFileName()}" >
+                    </div>
+                    <div class="itc-slider__item">
+                        <img th:src="'/img/' + ${product.imageList[3].getFileName()}" >
+                    </div>
+                </div>
+            </div>
+            <button class="itc-slider__btn itc-slider__btn_prev"></button>
+            <button class="itc-slider__btn itc-slider__btn_next"></button>
+        </div>
+    </div>
+    <div class="infoProduct">
+        <h1 th:text="${product.getTitle()}"></h1>
+        <p class="tittle">Артикул: <span th:text="${product.getVendorcode()}"></span></p>
+
+        <p class="tittle">Цена: <span th:text="${product.getPrice()} + ' ₽'"></span></p>
+
+        <p class="tittle">Описание: <span th:text="${product.getDescription()}"></span></p>
+
+        <p class="tittle">Страна-изготовитель: <span th:text="${product.getProducingcountry()}"></span></p>
+
+        <p class="tittle">Возрастная категория: <span th:text="${product.getCategory().getName()}"></span></p>
+
+    </div>
+</div>
+<footer>
+    <div><h1 class="logo">ROBO</h1></div>
+    <div>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non bibendum erat, a hendrerit lacus. Sed sit amet tellus ex. In dictum, nibh et finibus condimentum, sapien dolor consequat felis, et faucibus enim augue faucibus nibh.</p>
+        <p>Nam non aliquam nibh. Pellentesque ullamcorper rutrum orci ut scelerisque. Integer consequat eget lacus gravida iaculis. Morbi ac turpis non elit vulputate maximus at ac elit. In porta massa eget eros sagittis, nec tincidunt felis ullamcorper.
+        </p>
+    </div>
+</footer>
+<script type="text/javascript" th:src="@{/js/index.js}" src="../../static/js/index.js"></script>
+</body>
+
+</html>
+
+<!--
+<div th:each="img : ${product.getImageList()}" class="ant-carousel">
     <img th:src="'/img/' + ${img.getFileName()}" width="300px">
 </div>
-</body>
-</html>
+-->

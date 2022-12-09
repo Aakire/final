@@ -1,0 +1,132 @@
+.productInfo p{
+    margin: 10px 0px 0px 0px;
+  }
+  
+  .favoriteBtn{
+    border: none;
+    justify-self: end;
+    color: #7E8C91;  
+    z-index: 1;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform .4s ease-out;
+  }
+  
+  .favoriteBtn img{
+    width: 40px;
+  }
+
+  .favoriteBtn:hover {
+    transform: scale(1.25); 
+  }
+  
+  .imgContainer{
+    height: 200px;
+  }
+  
+  .productImg{
+    height: 190px; 
+    display: block;
+    margin: 0 auto;
+    max-width: 325px;
+  }
+  
+  .productTittle{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .price{
+    color: var(--color_3);
+    font-weight: bold;
+    margin: 0px;
+  }
+  
+  .price span{
+    color: var(--fontcolor);
+    font-size: 20px;
+    margin: 0px;
+  }
+
+  .productItem{
+    display: grid;
+    grid-template-rows: 20px 200px 1fr 60px;
+    border: 1.5px solid  var(--color_3);
+    border-radius: 25px;
+    padding: 20px;  
+    align-items: center;
+    transition: box-shadow 0.5s ease-out;
+    max-width: 360px; 
+    min-height: 415px; 
+  }
+  
+  .productItem:hover{
+    box-shadow: 0px 0px 8px 6px var(--color_3);
+  }
+  
+  .productPrice{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  .price{
+    justify-self: start;
+    line-height: 150%;
+  }
+  
+  .onCart{
+    justify-self: end;
+    border: 2px solid var(--color_3);    
+    color: var(--backcolor_2);
+    border-radius: 10px;
+    padding: 0;
+    height: 45px;
+    width: max-content;
+    align-self: center;  
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 0.3fr;
+    background-color: var(--color_1);   
+
+  }
+  
+  .offCart{
+    justify-self: end;
+    background-color: var(--color_3);
+    border: 2px solid var(--color_3);
+    color: var(--color_1);
+    border-radius: 10px;
+    padding: 0;
+    height: 45px;
+    width: max-content;
+    align-self: center;  
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 0.3fr;    
+
+  }
+
+  .imgCart{ 
+    margin-right: 5px;  
+    width: 40px;
+  }
+  
+  .cartBtnText{
+    display: block;
+    margin: auto 10px ;
+    font-size: 14px;
+  }  
+
+  .onCart:hover{
+    cursor: pointer;
+    color: var(--color_1);
+    background-color: var(--color_4);
+    box-shadow: 5px 5px 5px var(--color_3);
+  }
+
+  .offCart:hover{
+    cursor: pointer;
+    background-color: var(--color_4);
+    box-shadow: 5px 5px 5px var(--color_3);
+  }

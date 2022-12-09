@@ -1,0 +1,19 @@
+.productContainer{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 30px;
+}
+
+.infoProduct h1{
+    margin-left: 30px;
+    margin-bottom: 40px;
+}
+.tittle{
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tittle span{
+    font-weight: 400;
+}

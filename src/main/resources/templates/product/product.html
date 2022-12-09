@@ -5,6 +5,7 @@
     <title>Список товаров</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/product.css}" href="../../static/css/product.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/card.css}" href="../../static/css/card.css">
 </head>
 <body>
 <header>
@@ -68,28 +69,37 @@
     </form>
 </div>
 
-<div class="resulProduct">
+<div class="resultProduct">
     <h3>Результат</h3>
     <div th:each="product : ${search_product}">
         <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
         <br>
         <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-        <hr>
+
+        <div class="productPrice"> 
+            <p class="price">Цена: <br />
+              <span th:text="${product.getPrice()} + ' ₽'"></span>
+            </p>
+        </div>
     </div>
 </div>
+
+
 
 <div class="allProduct">
     <h3>Доступные товары: </h3>
 
     <div th:each="product : ${products}" class="card">
-        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-        <br>
-        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-        <hr>
-    </div>
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" class="imgContainer">
 
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+
+        <div class="productPrice"> 
+            <p class="price">Цена: <br />
+                <span th:text="${product.getPrice()} + ' ₽'"></span>
+            </p>
+        </div>
+    </div>
 </div>
 
 

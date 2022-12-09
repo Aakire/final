@@ -1,3 +1,21 @@
 .sort{
 
 }
+
+.productsSection{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .productSection h2{
+    text-align: center;
+    margin: 0 50px;
+  }
+  
+  .allProduct{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    line-height: 150%;
+    margin: 0px 15px;    
+  }

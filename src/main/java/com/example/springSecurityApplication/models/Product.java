@@ -121,6 +121,8 @@ public class Product {
         return imageList;
     }
 
+
+
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
     }
