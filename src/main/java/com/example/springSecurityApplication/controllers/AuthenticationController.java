@@ -5,6 +5,7 @@ import com.example.springSecurityApplication.services.PersonService;
 import com.example.springSecurityApplication.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,11 +31,7 @@ public class AuthenticationController {
         return "authentication/login";
     }
 
-//    @GetMapping("/registration")
-//    public String registration(Model model){
-//        model.addAttribute("person", new Person());
-//
-//    }
+
 
     @GetMapping("/registration")
     public String registration(@ModelAttribute("person") Person person){
@@ -52,6 +49,8 @@ public class AuthenticationController {
         personService.register(person);
         return "redirect:/index";
     }
+
+
 
     @Controller
     public static class ProductController {

@@ -15,7 +15,7 @@
 }
 
 body{
-    background-color: var(--color_1);;
+    background-color: var(--color_1);
 }
 
 a{
@@ -26,8 +26,15 @@ a{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
 }
 
+.tittle{
+    font-size: 18px;
+    font-weight: 700;
+    margin: 10px 30px;
+    color: var(--blue);
+}
 /*--------------------Header--------------------*/
 
 header{
@@ -71,17 +78,11 @@ nav{
     color: var(--color_1);
 }
 
-
-
 @media screen and (max-width: 1000px) {
-
-    /*Header*/
-
     header{
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, 1fr);
     }
-
     nav{
         justify-items: center;
     }
@@ -102,7 +103,6 @@ nav{
         justify-items: center;
     }
 }
-
 
 /* -----------------Banner---------------- */
 
@@ -134,7 +134,9 @@ nav{
 }
 
 .textBanner span{
-    color: var(--backcolor_2);
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 35px;
 
 }
 

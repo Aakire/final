@@ -77,4 +77,14 @@ public class ProductController {
 
     }
 
+    @PostMapping("/searchByName")
+    public String productSearchByName(@RequestParam("search") String search, Model model){
+        model.addAttribute("search_product", productRepository.findByTitleContainingIgnoreCase(search));
+
+        model.addAttribute("value_search", search);
+        model.addAttribute("products", productService.getAllProduct());
+        return "/admin/admin";
+
+    }
+
 }

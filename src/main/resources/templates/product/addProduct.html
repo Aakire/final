@@ -7,19 +7,19 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
 </head>
 <body>
-    <div class="topDesk">
-        <a th:href="@{/}">
-            <h1 class="logo">ROBO</h1>
-        </a>
-        <h3>Кабинет администратора</h3>
-        <form method="post" th:action="@{/logout}" >
-            <button type="submit" class="logout">Выйти из личного кабинета</button>
-        </form>
-    </div>
+<div class="topDesk">
+    <a th:href="@{/}">
+        <h1 class="logo">ROBO</h1>
+    </a>
+    <a th:href="@{/admin}"><h3>Кабинет администратора</h3></a>
+    <form method="post" th:action="@{/logout}" >
+        <button type="submit" class="logout">Выйти из личного кабинета</button>
+    </form>
+</div>
 
     <div>
-        <h3>Добавление товаров</h3>
-        <form th:method="POST" th:action="@{/admin/product/add}" th:object="${product}" enctype="multipart/form-data"  class="addDesk">
+        <h3 class="tittle">Добавление товаров</h3>
+        <form th:method="POST" th:action="@{/admin/product/add}" th:object="${product}" enctype="multipart/form-data"  class="productDesk">
             <label for="title">Введите наименование товара: </label>
             <input type="text" th:field="*{title}" placeholder="Наименование" id="title">
             <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
@@ -58,7 +58,7 @@
                 <input type="file" name="file_four" >
                 <input type="file" name="file_five" >
             </div> 
-            <input type="submit" value="Добавить товар" class="addBtn">           
+            <input type="submit" value="Добавить товар" class="adminBtn">
         </form>
     </div>    
 

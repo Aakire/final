@@ -3,6 +3,7 @@ package com.example.springSecurityApplication.controllers.admin;
 import com.example.springSecurityApplication.models.Image;
 import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.repositories.CategoryRepository;
+import com.example.springSecurityApplication.services.PersonService;
 import com.example.springSecurityApplication.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,10 +30,13 @@ public class AdminController {
 
     private final CategoryRepository categoryRepository;
 
+    private final PersonService personService;
+
     @Autowired
-    public AdminController(ProductService productService, CategoryRepository categoryRepository) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
+        this.personService = personService;
     }
 
     //    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
@@ -40,6 +44,12 @@ public class AdminController {
     public String admin(Model model){
         model.addAttribute("products", productService.getAllProduct());
         return "admin/admin";
+    }
+
+    @GetMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("products", productService.getAllProduct());
+        return "user/index";
     }
 
     // http:8080/localhost/admin/product/add
@@ -152,6 +162,9 @@ public class AdminController {
         return "product/editProduct";
     }
 
+    
+
+
     // Метод по редактированию товара
     @PostMapping("/product/edit/{id}")
     public String editProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, @PathVariable("id") int id){
@@ -162,6 +175,10 @@ public class AdminController {
         productService.updateProduct(id, product);
         return "redirect:/admin";
     }
+
+
+
+
 
 
 

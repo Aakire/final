@@ -1,3 +1,5 @@
+
+/*--------------TOP-------------*/
 .topDesk{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -5,6 +7,10 @@
     align-items: center;
     background-color: var(--backcolor_2);
     margin-bottom: 30px;
+}
+
+.topDesk h3{
+    color: var(--color_1)
 }
 
 .logout{
@@ -23,11 +29,9 @@
 }
 
 .logout:hover{
-    
     box-shadow: inset -2px -2px 2px var(--color_1);
     background-color: var(--color_4);
     color: var(--color_1);
-    
 }
 
 .topDesk h1{    
@@ -36,27 +40,79 @@
     margin: 0px;    
 }
 
-.addBtn{
+/*--------------PANEL-------------*/
+
+.adminBtn{
     border: none;
     border-radius: 6px;
     background-color: var(--backcolor_2);
     box-shadow: 2px 2px var(--fontcolor);
     color: var(--color_1);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-    padding: 5px 10px;
-    width: 200px;
-    margin: 30px;
+    padding: 5px;
+    width: 230px;
+    margin: 20px;
 }
 
-.addBtn a{
+.adminBtn a{
     color: var(--color_1);
 }
 
-.addDesk{
+.adminPanel{
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    padding: 30px;
+}
+
+.searchBtn{
+    align-self: end;
+    color: var(--backcolor_2);
+    border-radius: 10px;
+    padding: 0;
+    height: 45px;
+    border: 2px solid var(--color_3);
+    background-color: var(--color_1);
+    width: 200px;
+}
+
+.searchBtn:hover{
+    cursor: pointer;
+    color: var(--color_1);
+    background-color: var(--blue);
+    box-shadow: 5px 5px 5px var(--color_3);
+    width: 200px;
+
+}
+
+.searchByName label{
+    color: var(--color_1);
+}
+
+fieldset{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: var(--backcolor_2);
+    gap: 30px;
+    max-width: 650px;
+}
+
+label{
+    margin: 5px;
+    font-size: 14px;
+    color: var(--fontcolor);
+}
+
+#search{
+    width: 400px;
+}
+
+/*----------------ADD BLOCK--------------*/
+
+.productDesk{
     display: flex;
     flex-direction: column;
     padding: 20px 30px;
@@ -66,7 +122,6 @@ label{
     font-size: 18px;
     margin-bottom: 8px;
     margin-top: 20px;
-
 }
 
 input{
@@ -93,5 +148,20 @@ input{
     margin: 20px;
 }
 
+/*--------------  --------------*/
 
+.resultSearchBlock{
+    display: grid;
+    grid-template-columns: 2fr 1fr 250px 250px;
+    border: 2px solid var(--color_3) ;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 0px 30px;
+}
 
+.tittleText{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}

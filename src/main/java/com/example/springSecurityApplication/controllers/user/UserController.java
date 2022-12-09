@@ -49,6 +49,8 @@ public class UserController {
         return "user/index";
     }
 
+
+
     @GetMapping("/cart/add/{id}")
     public String addProductInCart(@PathVariable("id") int id, Model model){
         Product product = productService.getProductId(id);
