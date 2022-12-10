@@ -2,6 +2,7 @@ package com.example.springSecurityApplication.config;
 
 import com.example.springSecurityApplication.services.PersonDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -25,6 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
     private final PersonDetailsService personDetailsService;
 
+    @Value("${upload.path}")
+    private String uploadPath;
+
     @Autowired
     public SecurityConfig(PersonDetailsService personDetailsService) {
         this.personDetailsService = personDetailsService;
@@ -40,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем что страница /admin доступна пользователю с ролью ADMIN
                 .antMatchers("/admin").hasRole("ADMIN")
                 // Указыаем что данные страницы доступна все пользователям
-                .antMatchers("/authentication/login", "/authentication/registration", "/error", "/product", "/img/**", "/product/info/{id}", "/css/**").permitAll()
+                .antMatchers("/authentication/login", "/authentication/registration", "/error", "/product", "/img/**", "/product/info/**", "/css/**", "/js/**",  "/user/index", "file:///" + uploadPath + "/").permitAll()
                 // Указываем что все остальные страницы доступны пользователям с ролью user и admin
                 .anyRequest().hasAnyRole("USER", "ADMIN")
 //                // Указываем что для всех остальных страниц необходимо вызывать метод authenticated(), который открывает форму аутентификации

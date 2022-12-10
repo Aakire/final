@@ -15,8 +15,6 @@ public interface PersonRepository extends JpaRepository<Person, Integer> {
     @Override
     List<Person> findAll();
 
-    @Query(value="update Person set role='ROLE_ADMIN' where id=?1", nativeQuery = true)
-    List<Product> upRole (int id);
 
 
 }

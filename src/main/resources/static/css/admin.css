@@ -69,27 +69,7 @@
     padding: 30px;
 }
 
-.submitBtn{
-    align-self: end;
-    color: var(--backcolor_2);
-    border-radius: 10px;
-    padding: 0;
-    height: 45px;
-    border: 2px solid var(--color_3);
-    background-color: var(--color_1);
-    width: 200px;
-    font-size: 16px;
-    font-weight: 600;
-}
 
-.submitBtn:hover{
-    cursor: pointer;
-    color: var(--color_1);
-    background-color: var(--blue);
-    box-shadow: 5px 5px 5px var(--color_3);
-    width: 200px;
-
-}
 
 .searchByName label{
     color: var(--color_1);
@@ -196,4 +176,8 @@ input{
 
 #password{
     width: 550px;
+}
+
+.editBlock button{
+    justify-self: end;
 }

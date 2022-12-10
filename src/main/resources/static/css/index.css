@@ -7,6 +7,7 @@
     --color_3: #7E8C91;
     --color_4: #7e7d81;
     --blue: rgb(53, 69, 141);
+    --highlit: #508f94;
 }
 
 *{
@@ -117,7 +118,7 @@ nav{
     height: 350px;
     grid-template-rows: 1fr 0.5fr;
     justify-content: start;
-    background-image: linear-gradient(to top, rgba(125, 126, 179, 0.048), rgba(18, 128, 192, 0.103)), url("../images/robobanner.png");
+    background-image: linear-gradient(to top, rgba(125, 126, 179, 0.048), rgba(18, 128, 192, 0.103)), url("../img/robobanner.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: right;
@@ -157,10 +158,53 @@ nav{
     background-color: var(--color_4);
 }
 
+.darkBtn{
+    color: var(--color_1);
+    border-radius: 10px;
+    padding: 0;
+    height: 45px;
+    border: none;
+    background-color: var(--backcolor_2);
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.darkBtn:hover {
+    cursor: pointer;
+    color: var(--fontcolor);
+    background-color: var(--color_1);
+    box-shadow: 5px 5px 5px var(--backcolor_2);
+    width: 200px;
+}
+
+.submitBtn{
+    align-self: end;
+    color: var(--backcolor_2);
+    border-radius: 10px;
+    padding: 0;
+    height: 45px;
+    border: 2px solid var(--color_3);
+    background-color: var(--color_1);
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.submitBtn:hover{
+    cursor: pointer;
+    color: var(--color_1);
+    background-color: var(--highlit);
+    box-shadow: 5px 5px 5px var(--color_3);
+    width: 200px;
+}
+
 .bannerBtn:active{
     background-color: var(--color_1);
     color: var(--backcolor_2);
 }
+
+
 
 .textSection{
     height: 350px;

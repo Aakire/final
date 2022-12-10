@@ -8,10 +8,64 @@
 
 .infoProduct h1{
     margin-bottom: 40px;
+}
+
+.priceAndCart {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.priceAndCart a{
+    justify-content: end;
+}
+
+.infoText span{
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.offCart:hover{
+    cursor: pointer;
+    background-color: var(--color_4);
+    box-shadow: 5px 5px 5px var(--color_3);
+}
+
+.offCart{
+    justify-self: end;
+    background-color: var(--color_3);
+    border: 2px solid var(--color_3);
+    color: var(--color_1);
+    border-radius: 10px;
+    padding: 0;
+    height: 45px;
+    width: max-content;
+    align-self: center;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 0.3fr;
+
+}
+
+.imgCart{
+    margin-right: 5px;
+    width: 40px;
+}
+
+.cartBtnText{
+    display: block;
+    margin: auto 10px ;
+    font-size: 14px;
+}
+
+.productTittle{
+    font-weight: 700;
+    font-size: 30px;
     color: var(--blue);
 }
 
-
-.tittle span{
-    font-weight: 400;
+.infoText{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
 }

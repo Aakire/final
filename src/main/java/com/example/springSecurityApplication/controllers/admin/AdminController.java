@@ -1,13 +1,18 @@
 package com.example.springSecurityApplication.controllers.admin;
 
 import com.example.springSecurityApplication.models.Image;
+import com.example.springSecurityApplication.models.Order;
 import com.example.springSecurityApplication.models.Person;
 import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.repositories.CategoryRepository;
+import com.example.springSecurityApplication.repositories.OrderRepository;
+import com.example.springSecurityApplication.security.PersonDetails;
 import com.example.springSecurityApplication.services.PersonService;
 import com.example.springSecurityApplication.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -31,11 +37,14 @@ public class AdminController {
     private final CategoryRepository categoryRepository;
     private final PersonService personService;
 
+    private final OrderRepository orderRepository;
+
     @Autowired
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderRepository orderRepository) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
         this.personService = personService;
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping("")
@@ -43,12 +52,6 @@ public class AdminController {
         model.addAttribute("products", productService.getAllProduct());
         model.addAttribute("person", personService.getAllPerson());
         return "admin/admin";
-    }
-
-    @GetMapping("/home")
-    public String home(Model model) {
-        model.addAttribute("products", productService.getAllProduct());
-        return "user/index";
     }
 
     @GetMapping("/product/add")
@@ -193,7 +196,17 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+/*----------------ORDERS-----------------*/
 
+
+    @GetMapping("/orders")
+    public String ordersUser(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
+        model.addAttribute("orders", orderList);
+        return "/user/orders";
+    }
 
 
 

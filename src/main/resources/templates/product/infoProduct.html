@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<div class="main">
+
 <head>
     <meta charset="UTF-8">
     <title>Информация о товаре</title>
@@ -8,26 +8,26 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/info.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/slider.css}">
     <script src="https://itchief.ru/examples/libs/ui-components/itc-slider/itc-slider.js" defer></script>
-
 </head>
+
+
 <body>
+<div class="main">
 <header>
     <a th:href="@{/index}">
         <h1 class="logo">ROBO</h1>
     </a>
     <nav>
-        <a>
-            <button class="navItem">Избранное</button>
+        <a th:href="@{../orders}">
+            <button class="navItem">
+                Мои заказы
+            </button>
         </a>
         <a th:href="@{/cart}">
-            <button class="navItem">
-                Корзина
-            </button>
+            <button class="navItem">Корзина</button>
         </a>
         <form method="post" th:action="@{/logout}">
-            <button class="navItem">
-                Выйти
-            </button>
+            <button class="navItem">Выйти</button>
         </form>
 
     </nav>
@@ -56,28 +56,39 @@
         </div>
     </div>
     <div class="infoProduct">
-        <h1 th:text="${product.getTitle()}"></h1>
-        <p class="tittle">Артикул: <span th:text="${product.getVendorcode()}"></span></p>
+        <h1 class="productTittle" th:text="${product.getTitle()}"></h1>
 
-        <p class="tittle">Цена: <span th:text="${product.getPrice()} + ' ₽'"></span></p>
+        <div class="priceAndCart">
+            <div>
+                <p class="infoText">Артикул: <span  th:text="${product.getVendorcode()}"></span></p>
+                <p class="infoText">Цена: <span th:text="${product.getPrice()} + ' ₽'"></span></p>
 
-        <p class="tittle">Описание: <span th:text="${product.getDescription()}"></span></p>
+            </div>
+        <a th:href="@{/cart/add/{id}(id=${product.getId()})}">
+        <button class="offCart" >
+            <span class="cartBtnText">В корзину</span>
+            <img class="imgCart" src="/img/cart-1.png" alt='product img' />
+        </button>
+        </a>
+        </div>
 
-        <p class="tittle">Страна-изготовитель: <span th:text="${product.getProducingcountry()}"></span></p>
+        <p class="infoText">Описание: <span th:text="${product.getDescription()}"></span></p>
 
-        <p class="tittle">Возрастная категория: <span th:text="${product.getCategory().getName()}"></span></p>
+        <p class="infoText">Страна-изготовитель: <span th:text="${product.getProducingcountry()}"></span></p>
+
+        <p class="infoText">Возрастная категория: <span th:text="${product.getCategory().getName()}"></span></p>
 
     </div>
 </div>
 <footer>
     <div><h1 class="logo">ROBO</h1></div>
-    <div class=adress>
+    <div class="adress">
         <h2>Офис в Москве</h2>
         <p> Набережная ул., д. 15 офис 18</p>
         <h3>Телефон:  <span>+7 (945) 945-55-70</span></h3>
         <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
     </div>
-    <div class="adress"}>
+    <div class="adress">
         <h2>Офис в Новосибирске</h2>
         <p> Лесная ул., д. 17</p>
         <h3>Телефон:  <span>+7 (383) 730-19-83</span></h3>
@@ -91,13 +102,8 @@
     </div>
 </footer>
 </div>
-<script type="text/javascript" th:src="@{/js/index.js}" src="../../static/js/index.js"></script>
+
+
 </body>
 
 </html>
-
-<!--
-<div th:each="img : ${product.getImageList()}" class="ant-carousel">
-    <img th:src="'/img/' + ${img.getFileName()}" width="300px">
-</div>
--->

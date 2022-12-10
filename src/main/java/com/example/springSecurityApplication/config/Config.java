@@ -20,6 +20,8 @@ public class Config implements WebMvcConfigurer {
                 .addResourceLocations("file:///" + uploadPath + "/");
     }
 
+
+/*
     @Bean
     public ITemplateResolver templateResolver() {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
@@ -29,4 +31,5 @@ public class Config implements WebMvcConfigurer {
         resolver.setCharacterEncoding("UTF-8");
         return resolver;
     }
+    */
 }
