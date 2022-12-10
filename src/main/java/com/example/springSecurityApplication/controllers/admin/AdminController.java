@@ -1,6 +1,7 @@
 package com.example.springSecurityApplication.controllers.admin;
 
 import com.example.springSecurityApplication.models.Image;
+import com.example.springSecurityApplication.models.Person;
 import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.repositories.CategoryRepository;
 import com.example.springSecurityApplication.services.PersonService;
@@ -27,9 +28,7 @@ public class AdminController {
     private String uploadPath;
 
     private final ProductService productService;
-
     private final CategoryRepository categoryRepository;
-
     private final PersonService personService;
 
     @Autowired
@@ -39,10 +38,10 @@ public class AdminController {
         this.personService = personService;
     }
 
-    //    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @GetMapping("")
     public String admin(Model model){
         model.addAttribute("products", productService.getAllProduct());
+        model.addAttribute("person", personService.getAllPerson());
         return "admin/admin";
     }
 
@@ -52,8 +51,6 @@ public class AdminController {
         return "user/index";
     }
 
-    // http:8080/localhost/admin/product/add
-    // Метод по отображению страницы с возможностью добавления товаров
     @GetMapping("/product/add")
     public String addProduct(Model model){
         model.addAttribute("product", new Product());
@@ -154,6 +151,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+
+
     // Метод по отображению страницы с возможностью редактирования товаров
     @GetMapping("/product/edit/{id}")
     public String editProduct(Model model, @PathVariable("id") int id){
@@ -161,8 +160,6 @@ public class AdminController {
         model.addAttribute("category", categoryRepository.findAll());
         return "product/editProduct";
     }
-
-    
 
 
     // Метод по редактированию товара
@@ -175,10 +172,57 @@ public class AdminController {
         productService.updateProduct(id, product);
         return "redirect:/admin";
     }
+/*-----------------------------------*/
+    @GetMapping("/editUser/{id}")
+    public String editUser(Model model, @PathVariable("id") int id){
+        model.addAttribute("person", personService.getPersonId(id));
+
+        return "admin/editUser";
+    }
+
+    @PostMapping("/editUser/{id}")
+    public String editUser(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+
+        personService.updatePerson(id, person);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") int id){
+        personService.deleteUser(id);
+        return "redirect:/admin";
+    }
 
 
 
 
+
+/*
+
+
+    @GetMapping("/user/setAdmin/{id}")
+    public String setAdmin(Model model, @PathVariable("id") int id){
+        model.addAttribute("person", personService.getById(id));
+        personService.upDateUser(id);
+        return "redirect:/admin";
+    }
+
+        @PostMapping("/editUser/{id}")
+    public String editUser(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id){
+        if(bindingResult.hasErrors())
+        {
+            return "person/editUser";
+        }
+        personService.updatePerson(id, person);
+        return "redirect:/admin";
+    }
+
+        @GetMapping("/promoteUser/{id}")
+    public String promoteUser(@ModelAttribute("person") @Valid Person person, @PathVariable("id") int id){
+        personService.promoteUser(id, person);
+        return "redirect:/admin";
+    }
+ */
 
 
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование товаров</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" href="../../static/css/admin.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
+</head>
+<body>
+<div class="topDesk">
+    <a>
+        <h1 class="logo">ROBO</h1>
+    </a>
+    <a th:href="@{/admin}"><h3>Кабинет администратора</h3></a>
+    <form method="post" th:action="@{/logout}" >
+        <button type="submit" class="logout">Выйти из личного кабинета</button>
+    </form>
+</div>
+<div id="wrapper" class="editForm">
+    <h3 class="tittle">Редактирование пользователя: </h3>
+    <form method="post" th:action="@{/admin/editUser/{id}(id=${person.getId()})}"  th:object="${person}" id="edit" class="editBlock">
+        <div>
+            <label for="username">Логин пользователя: </label>
+            <input type="text" th:field="*{login}" placeholder="Логин"  name="username" id="username">
+        </div>
+        <div>
+            <label for="password">Логин пользователя: </label>
+            <input type="text" th:field="*{password}" placeholder="пароль"  name="password" id="password">
+        </div>
+        <div>
+            <label for="role">Роль пользователя: </label>
+            <input type="text" th:field="*{role}" placeholder="роль"  name="role" id="role">
+        </div>
+        <button type="submit" class="submitBtn">Сохранить</button>
+    </form>
+</div>
+</body>
+</html>
