@@ -21,6 +21,15 @@ public class Order {
     private Person person;
 
     private int count;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private float price;
 
     private LocalDateTime dateTime;

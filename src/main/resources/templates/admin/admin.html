@@ -10,7 +10,7 @@
 
 <div class="adminDesk">
 
-            <div class="topDesk">
+   <div class="topDesk">
                 <a>
                     <h1 class="logo">ROBO</h1>
                 </a>
@@ -21,10 +21,11 @@
             </div>
 
 
-        <div class="adminPanel">
-        <a href="admin/product/add"><button class="adminBtn">Добавить товар</button></a>
-        <a href="../product"><button class="adminBtn">Просмотр товаров</button></a>
-            <form th:method="POST" th:action="@{/product/searchByName}" >
+   <div class="adminProductPanel">
+       <a href="admin/product/add"><button class="adminBtn">Добавить товар</button></a>
+       <a href="admin/order"><button class="adminBtn">Просмотр заказов</button></a>
+
+       <form th:method="POST" th:action="@{/product/searchByName}" >
             <fieldset>
                 <div class="searchByName">
                     <label for="search">Наименование товара: </label>
@@ -33,10 +34,8 @@
                 <input type="submit" value="Применить" class="submitBtn">
             </fieldset>
             </form>
-
-        </div>
-
-        <div th:each="product : ${search_product}" class="resultSearchBlock" >
+   </div>
+   <div th:each="product : ${search_product}" class="resultSearchBlock" >
             <div class="tittleText">
             <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
             </div>
@@ -51,7 +50,6 @@
                 <button class="adminBtn">Удалить товар</button>
             </a>
         </div>
-
     <div class="allPerson">
         <h3 class="tittle"> Все пользователи: </h3>
             <div th:each="person : ${person}" class="resultSearchBlock">

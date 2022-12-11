@@ -7,6 +7,7 @@ import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.repositories.CategoryRepository;
 import com.example.springSecurityApplication.repositories.OrderRepository;
 import com.example.springSecurityApplication.security.PersonDetails;
+import com.example.springSecurityApplication.services.OrderService;
 import com.example.springSecurityApplication.services.PersonService;
 import com.example.springSecurityApplication.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +38,15 @@ public class AdminController {
     private final CategoryRepository categoryRepository;
     private final PersonService personService;
 
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
+
 
     @Autowired
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderRepository orderRepository) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderRepository orderRepository, OrderService orderService) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
         this.personService = personService;
-        this.orderRepository = orderRepository;
+        this.orderService = orderService;
     }
 
     @GetMapping("")
@@ -198,14 +200,29 @@ public class AdminController {
 
 /*----------------ORDERS-----------------*/
 
+    @GetMapping("/deleteOrder/{id}")
+    public String deleteOrder(@PathVariable("id") int id){
+        orderService.deleteOrder(id);
+        return "redirect:/admin/order";
+    }
 
-    @GetMapping("/orders")
+    @GetMapping("/viewOrder/{id}")
+    public String viewOrder(Model model, @PathVariable("id") int id){
+        model.addAttribute("order", orderService.getById(id));
+        return "admin/viewOrder";
+    }
+
+    @PostMapping("/viewOrder/{id}")
+    public String updateOrderStatus(@ModelAttribute("order") Order order, @PathVariable("id") int id){
+        orderService.updateOrderStatus(id, order);
+        return "redirect:/admin/order";
+    }
+
+    @GetMapping("/order")
     public String ordersUser(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
-        model.addAttribute("orders", orderList);
-        return "/user/orders";
+        List<Order> listAllOrders = orderService.getAllOrders();
+        model.addAttribute("order", listAllOrders);
+        return "/admin/order";
     }
 
 

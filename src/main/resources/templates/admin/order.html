@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр заказов</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" href="../../static/css/admin.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminorder.css}" href="../../static/css/index.css">
+</head>
+<body>
+
+<div class="topDesk">
+    <a>
+        <h1 class="logo">ROBO</h1>
+    </a>
+    <a th:href="@{/admin}"><h3>Кабинет администратора</h3></a>
+    <form method="post" th:action="@{/logout}" >
+        <button type="submit" class="logout">Выйти из личного кабинета</button>
+    </form>
+</div>
+
+<div class="ordersContainer">
+    <h1 class="ordersBlockTittle">Посмотреть заказы: </h1>
+    <div class="tittleBlock">
+        <p>Заказ №</p>
+        <p>Пользователь</p>
+        <p>Дата заказа:</p>
+        <br>
+        <br>
+
+    </div>
+    <div th:each="order : ${order}" class="ordersBlock" >
+
+
+        <div class="listOfAllOrders">
+            <p class="OrderTittle" th:text="${order.getNumber()}"></p>
+            <p class="orderText" th:text="${order.getPerson().getLogin()}"></p>
+
+            <p class="orderText" th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">
+            </p>
+
+            <a th:href="@{/admin/viewOrder/{id}(id=${order.getId})}">
+                <button class="adminBtn">Просмотр заказа</button>
+            </a>
+            <a th:href="@{/admin/deleteOrder/{id}(id=${order.getId})}">
+                <button class="adminBtn">Удалить заказ</button>
+            </a>
+
+        </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

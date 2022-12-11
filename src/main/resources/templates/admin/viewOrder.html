@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр заказов</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" href="../../static/css/admin.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/orders.css}" href="../../static/css/index.css">
+</head>
+<body>
+<div>
+    <h1 class="ordersBlockTittle">Просмотр информации о заказе</h1>
+
+    <div>
+         <form method="post" th:action="@{/admin/editStatus/{id}(id=${order.getId()})}"  th:object="${order}" id="edit" class="editBlock">
+                <h3 class="OrderTittle" th:text="'Заказ №   ' + ${order.getNumber()}"></h3>
+                <p class="orderText" th:text="'Наименование товаров:   ' + ${order.getProduct().getTitle()}"></p>
+                <p class="orderText" th:text="'Количество:   ' + ${order.getCount()}"></p>
+                <p class="orderText" th:text="'Сумма заказа:   ' + ${order.getPrice()}"></p>
+                <p class="orderText" th:text="'Дата заказа:   ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+                <p class="StatusText" th:text="'Статус:   ' + ${order.getStatus()}"></p>
+
+                <div class="submitStatus">
+                    <label for="status">Выберите статус заказа: </label>
+                    <select name="status" th:field="*{status}" id="status">
+                        <div th:each="element : ${status}">
+                            <option th:text="${element.values()}" th:value="${element.getId()}"></option>
+                        </div>
+                    </select>
+                    <input type="submit" value="Редактировать" class="adminBtn">
+                </div>
+            </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

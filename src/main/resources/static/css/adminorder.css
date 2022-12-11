@@ -1,0 +1,39 @@
+
+
+.tittleBlock{
+    display: grid;
+    grid-template-columns: 1fr 160px 160px 280px 280px;
+    padding-left: 10px;
+    align-items: center;
+    font-weight: 600;
+    font-size: 18px;
+    border-bottom: 1px solid var(--backcolor_2);
+    border-top: 2px solid var(--backcolor_2);
+}
+
+.listOfAllOrders{
+    display: grid;
+    grid-template-columns: 1fr 180px 180px 280px 280px;
+    align-items: center;
+    border-bottom: 1px solid var(--backcolor_2);
+}
+
+.ordersContainer{
+    padding: 0px 30px;
+}
+
+.ordersBlockTittle{
+    color: var(--backcolor_2);
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+.status{
+    width: 200px;
+}
+
+.submitStatus{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
