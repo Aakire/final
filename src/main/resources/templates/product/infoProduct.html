@@ -26,9 +26,14 @@
         <a th:href="@{/cart}">
             <button class="navItem">Корзина</button>
         </a>
-        <form method="post" th:action="@{/logout}">
-            <button class="navItem">Выйти</button>
-        </form>
+        <div th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
+             <span th:case="${false}">
+                  <a class="" href="/authentication"><button class="navItem">Войти</button></a>
+             </span>
+            <form th:case="${true}" method="post" th:action="@{/logout}">
+                <button class="navItem">Выйти</button>
+            </form>
+        </div>
 
     </nav>
 </header>

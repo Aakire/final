@@ -1,6 +1,7 @@
 package com.example.springSecurityApplication.services;
 
 
+import com.example.springSecurityApplication.enumm.Status;
 import com.example.springSecurityApplication.models.Order;
 
 import com.example.springSecurityApplication.repositories.OrderRepository;
@@ -29,17 +30,18 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public List<Status> getAllStatus(){
+        List <Status> statusList = List.of(Status.values());
+        return statusList;
+    }
+
     @Transactional
     public void deleteOrder(int id) {
         orderRepository.deleteById(id);
     }
 
     @Transactional
-    public void updateOrderStatus(int id, Order order){
-        order.setId(id);
+    public void updateOrder(Order order){
         orderRepository.save(order);
     }
-
-
-
 }

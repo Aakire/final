@@ -39,11 +39,11 @@ public class ProductController {
                 if(price.equals("sorted_by_ascending_price")){
                     if(!contact.isEmpty())
                     {
-                        if(contact.equals("furniture")){
+                        if(contact.equals("junior")){
                             model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 1));
-                        } else if(contact.equals("appliances")){
+                        } else if(contact.equals("middle")){
                             model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 2));
-                        }else if(contact.equals("clothes")){
+                        }else if(contact.equals("senior")){
                             model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 3));
                         }
                     }
@@ -51,11 +51,11 @@ public class ProductController {
                 else if (price.equals("sorted_by_descending_price")){
                     if(!contact.isEmpty())
                     {
-                        if(contact.equals("furniture")){
+                        if(contact.equals("junior")){
                             model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 1));
-                        } else if(contact.equals("appliances")){
+                        } else if(contact.equals("middle")){
                             model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 2));
-                        }else if(contact.equals("clothes")){
+                        }else if(contact.equals("senior")){
                             model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 3));
                         }
                     }

@@ -5,12 +5,51 @@
     <title>Просмотр заказов</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}" href="../../static/css/admin.css">
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/orders.css}" href="../../static/css/index.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminorder.css}" href="../../static/css/index.css">
 </head>
 <body>
+<div class="topDesk">
+    <a>
+        <h1 class="logo">ROBO</h1>
+    </a>
+    <a th:href="@{/admin}"><h3>Кабинет администратора</h3></a>
+    <form method="post" th:action="@{/logout}" >
+        <button type="submit" class="logout">Выйти из личного кабинета</button>
+    </form>
+</div>
+
 <div>
     <h1 class="ordersBlockTittle">Просмотр информации о заказе</h1>
 
+    <div class="infoOrderBlock">
+        <h3 class="OrderTittle" th:text="'Заказ №   ' + ${order.getNumber()}"></h3>
+        <p class="orderText" th:text="'Наименование товаров:   ' + ${order.getProduct().getTitle()}"></p>
+        <p class="orderText" th:text="'Количество:   ' + ${order.getCount()}"></p>
+        <p class="orderText" th:text="'Сумма заказа:   ' + ${order.getPrice()}"></p>
+        <p class="orderText" th:text="'Дата заказа:   ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+        <p class="StatusText" th:text="'Статус:   ' + ${order.getStatus()}"></p>
+
+        <div >
+            <form method="post" th:action="@{/admin/editStatus/{id}(id=${order.getId()})}"  th:object="${order}" id="edit" class="editStatus" >
+                <div class="statusSelectMenu">
+                    <label for="status" >Сменить статус заказа: </label>
+                    <select name="status" th:field="*{status}" id="status">
+                        <div th:each="element : ${ListOfStatus}">
+                            <option th:text="${element}" th:value="${element.toString()}"></option>
+                        </div>
+                    </select>
+                </div>
+                <input type="submit" value="Редактировать" class="submitBtn">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+<!--
     <div>
          <form method="post" th:action="@{/admin/editStatus/{id}(id=${order.getId()})}"  th:object="${order}" id="edit" class="editBlock">
                 <h3 class="OrderTittle" th:text="'Заказ №   ' + ${order.getNumber()}"></h3>
@@ -22,18 +61,14 @@
 
                 <div class="submitStatus">
                     <label for="status">Выберите статус заказа: </label>
-                    <select name="status" th:field="*{status}" id="status">
+                    <select name="status_set" th:field="*{status}" id="status">
                         <div th:each="element : ${status}">
-                            <option th:text="${element.values()}" th:value="${element.getId()}"></option>
+                            <option th:text="${element}" th:value="status_set"></option>
                         </div>
                     </select>
                     <input type="submit" value="Редактировать" class="adminBtn">
                 </div>
-            </form>
+         </form>
 
     </div>
-
-</div>
-
-</body>
-</html>
+-->

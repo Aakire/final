@@ -69,7 +69,21 @@
     padding: 30px;
 }
 
+.btnContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-content: end;
+}
+.adminProductPanel{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 40px;
+}
 
+.adminProductPanel div{
+    justify-self: end;
+}
 
 .searchByName label{
     color: var(--color_1);

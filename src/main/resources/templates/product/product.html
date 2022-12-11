@@ -23,11 +23,14 @@
                 Корзина
             </button>
         </a>
-        <form method="post" th:action="@{/logout}">
-            <button class="navItem">
-                Выйти
-            </button>
-        </form>
+        <div th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
+             <span th:case="${false}">
+                  <a class="" href="/authentication"><button class="navItem">Войти</button></a>
+             </span>
+            <form th:case="${true}" method="post" th:action="@{/logout}">
+                <button class="navItem">Выйти</button>
+            </form>
+        </div>
     </nav>
 </header>
 <section class="main">
@@ -64,16 +67,16 @@
                         <p>Возрастная категория: </p>
                         <div class="categoryBlock">
                             <div>
-                                <label for="furniture">Дошкольники 3+</label>
-                                <input type="radio" id="furniture" name="contact" value="furniture">
+                                <label for="junior">Дошкольники 3+</label>
+                                <input type="radio" id="junior" name="contact" value="junior">
                             </div>
                             <div>
-                                <label for="appliances">Начальная школа 5+</label>
-                                <input type="radio" id="appliances" name="contact" value="appliances">
+                                <label for="middle">Начальная школа 5+</label>
+                                <input type="radio" id="middle" name="contact" value="middle">
                             </div>
                             <div>
                                 <label for="clothes">Средняя школа 10+</label>
-                                <input type="radio" id="clothes" name="contact" value="clothes">
+                                <input type="radio" id="clothes" name="contact" value="senior">
                             </div>
                         </div>
                     </div>

@@ -82,7 +82,8 @@ public class Order {
         this.price = price;
     }
 
-    public Status getStatus() {
+    public Status
+    getStatus() {
         return status;
     }
 
@@ -109,4 +110,6 @@ public class Order {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
+
 }

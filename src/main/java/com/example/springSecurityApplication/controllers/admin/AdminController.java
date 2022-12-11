@@ -1,19 +1,17 @@
 package com.example.springSecurityApplication.controllers.admin;
 
+import com.example.springSecurityApplication.enumm.Status;
 import com.example.springSecurityApplication.models.Image;
 import com.example.springSecurityApplication.models.Order;
 import com.example.springSecurityApplication.models.Person;
 import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.repositories.CategoryRepository;
 import com.example.springSecurityApplication.repositories.OrderRepository;
-import com.example.springSecurityApplication.security.PersonDetails;
 import com.example.springSecurityApplication.services.OrderService;
 import com.example.springSecurityApplication.services.PersonService;
 import com.example.springSecurityApplication.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,6 +45,7 @@ public class AdminController {
         this.categoryRepository = categoryRepository;
         this.personService = personService;
         this.orderService = orderService;
+
     }
 
     @GetMapping("")
@@ -209,13 +208,16 @@ public class AdminController {
     @GetMapping("/viewOrder/{id}")
     public String viewOrder(Model model, @PathVariable("id") int id){
         model.addAttribute("order", orderService.getById(id));
+        model.addAttribute("ListOfStatus", orderService.getAllStatus());
         return "admin/viewOrder";
     }
 
-    @PostMapping("/viewOrder/{id}")
-    public String updateOrderStatus(@ModelAttribute("order") Order order, @PathVariable("id") int id){
-        orderService.updateOrderStatus(id, order);
-        return "redirect:/admin/order";
+    @PostMapping("/editStatus/{id}")
+    public String updateOrderStatus(@RequestParam(value = "status")String set_status,  @PathVariable("id") int id ){
+        Order order = orderService.getById(id);
+        order.setStatus(Status.valueOf(set_status));
+        orderService.updateOrder(order);
+        return "redirect:/admin/viewOrder/{id}";
     }
 
     @GetMapping("/order")
@@ -226,35 +228,13 @@ public class AdminController {
     }
 
 
+}
 
 /*
-
-
-    @GetMapping("/user/setAdmin/{id}")
-    public String setAdmin(Model model, @PathVariable("id") int id){
-        model.addAttribute("person", personService.getById(id));
-        personService.upDateUser(id);
-        return "redirect:/admin";
-    }
-
-        @PostMapping("/editUser/{id}")
-    public String editUser(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id){
-        if(bindingResult.hasErrors())
-        {
-            return "person/editUser";
-        }
-        personService.updatePerson(id, person);
-        return "redirect:/admin";
-    }
-
-        @GetMapping("/promoteUser/{id}")
-    public String promoteUser(@ModelAttribute("person") @Valid Person person, @PathVariable("id") int id){
-        personService.promoteUser(id, person);
-        return "redirect:/admin";
+    @PostMapping("/viewOrder/{id}")
+    public String updateOrderStatus(@RequestParam(value = "status_set")String status_set, Model model, @ModelAttribute("order") Order order, @PathVariable("id") int id ){
+        orderService.updateOrderStatus(id, order, Status.valueOf(status_set));
+        return "redirect:/admin/order";
     }
  */
-
-
-
-}
 

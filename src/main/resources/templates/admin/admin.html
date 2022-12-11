@@ -22,8 +22,6 @@
 
 
    <div class="adminProductPanel">
-       <a href="admin/product/add"><button class="adminBtn">Добавить товар</button></a>
-       <a href="admin/order"><button class="adminBtn">Просмотр заказов</button></a>
 
        <form th:method="POST" th:action="@{/product/searchByName}" >
             <fieldset>
@@ -34,6 +32,11 @@
                 <input type="submit" value="Применить" class="submitBtn">
             </fieldset>
             </form>
+       <div class="btnContainer">
+           <a href="admin/product/add" ><button class="adminBtn" >Добавить товар</button></a>
+           <a href="admin/order" ><button class="adminBtn" >Просмотр заказов</button></a>
+       </div>
+
    </div>
    <div th:each="product : ${search_product}" class="resultSearchBlock" >
             <div class="tittleText">

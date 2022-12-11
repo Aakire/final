@@ -2,18 +2,18 @@
 
 .tittleBlock{
     display: grid;
-    grid-template-columns: 1fr 160px 160px 280px 280px;
+    grid-template-columns: 1fr 160px 160px 140px 200px 200px;
     padding-left: 10px;
     align-items: center;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     border-bottom: 1px solid var(--backcolor_2);
     border-top: 2px solid var(--backcolor_2);
 }
 
 .listOfAllOrders{
     display: grid;
-    grid-template-columns: 1fr 180px 180px 280px 280px;
+    grid-template-columns: 1fr 160px 160px 140px 200px 200px;
     align-items: center;
     border-bottom: 1px solid var(--backcolor_2);
 }
@@ -28,12 +28,65 @@
     margin-left: 30px;
 }
 
-.status{
+#status{
     width: 200px;
+
 }
 
-.submitStatus{
+.editStatus{
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    justify-content: space-between;
+}
+
+.editStatus input{
+    justify-self: end;
+}
+
+.statusSelectMenu{
+    display: grid;
+    grid-template-rows: 1fr 50px;
+}
+
+.statusSelectMenu label{
+    color: var(--color_1);
+}
+
+option{
+    font-size: 25px;
+}
+
+.editOrderBtn{
+    border: none;
+    border-radius: 6px;
+    background-color: var(--backcolor_2);
+    box-shadow: 2px 2px var(--fontcolor);
+    color: var(--color_1);
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px;
+    width: 180px;
+    margin: 20px;
+}
+
+.editOrderBtn:hover{
+    background-color: var(--color_1);
+    color: var(--color_3);
+}
+
+.infoOrderBlock{
+    line-height: 250%;
+    border: 1px solid var(--color_3) ;
+    align-items: center;
+    justify-content: start;
+    gap: 30px;
+    padding: 20px 30px;
+    margin: 10px 30px;
+    width: 800px;
+    background-color: var(--backcolor_2);
+    color: var(--color_1);
 }

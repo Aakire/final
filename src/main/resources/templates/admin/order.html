@@ -22,35 +22,28 @@
 <div class="ordersContainer">
     <h1 class="ordersBlockTittle">Посмотреть заказы: </h1>
     <div class="tittleBlock">
-        <p>Заказ №</p>
-        <p>Пользователь</p>
-        <p>Дата заказа:</p>
+        <p>Заказ №:</p>
+        <p>Заказчик:</p>
+        <p>Статус: </p>
+        <p>Дата:</p>
         <br>
         <br>
-
     </div>
     <div th:each="order : ${order}" class="ordersBlock" >
-
-
         <div class="listOfAllOrders">
-            <p class="OrderTittle" th:text="${order.getNumber()}"></p>
+            <p class="OrderText" th:text="${order.getNumber()}"></p>
             <p class="orderText" th:text="${order.getPerson().getLogin()}"></p>
-
+            <p class="orderText" th:text="${order.getStatus()}"></p>
             <p class="orderText" th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">
             </p>
-
             <a th:href="@{/admin/viewOrder/{id}(id=${order.getId})}">
-                <button class="adminBtn">Просмотр заказа</button>
+                <button class="editOrderBtn">Просмотр заказа</button>
             </a>
             <a th:href="@{/admin/deleteOrder/{id}(id=${order.getId})}">
-                <button class="adminBtn">Удалить заказ</button>
+                <button class="editOrderBtn">Удалить заказ</button>
             </a>
-
         </div>
-
-
     </div>
 </div>
-
 </body>
 </html>
