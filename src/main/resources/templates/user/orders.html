@@ -9,11 +9,15 @@
 <body>
 <div class="main">
 <header>
-        <a th:href="@{/index}">
+        <a th:href="@{../index}">
             <h1 class="logo">ROBO</h1>
         </a>
         <nav>
-            <br>
+            <a th:href="@{/product}">
+                <button class="navItem">
+                    Просмотр товаров
+                </button>
+            </a>
             <a th:href="@{/cart}">
                 <button class="navItem">
                     Корзина
