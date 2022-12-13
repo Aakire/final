@@ -40,9 +40,13 @@
    </div>
    <div th:each="product : ${search_product}" class="resultSearchBlock" >
             <div class="tittleText">
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}">
             <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+                </a>
             </div>
+
             <div class="tittleText">
+
             <p th:text="'Артикул: ' + ${product.getVendorcode()}"></p>
             </div>
             <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">

@@ -25,24 +25,17 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 
     //КАТЕГОРИЯ + ДИАПАЗОН!!!!
-    // Поиск по наименованию,по категории,  фильтрация по диапазону цены, сортировка по возрастанию цены
-    //Категория Диапазон по возрастанию
     @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)  order by  price", nativeQuery = true)
     List<Product> findByTitleAndCategoryPriceAsc(String title, float ot, float Do, int category);
-
-    // Поиск по наименованию,по категории,  фильтрация по диапазону цены, сортировка по убыванию цены
-    //Категория Диапазон по убыванию
     @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3) order by  price desc ", nativeQuery = true)
     List<Product> findByTitleAndCategoryPriceDesc(String title, float ot, float Do, int category);
 
 
     //КАТЕГОРИЯ БЕЗ ДИАПАЗОНА!!!!!
-    @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price", nativeQuery = true)
+    @Query(value = "select * from product where category_id=?2 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price", nativeQuery = true)
     List<Product> findByTitleAndCategoryAsc(String title, int category);
 
-    // Поиск по наименованию,по категории,  фильтрация по диапазону цены, сортировка по убыванию цены
-    //Категория Диапазон по убыванию
-    @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price desc ", nativeQuery = true)
+    @Query(value = "select * from product where category_id=?2 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price desc ", nativeQuery = true)
     List<Product> findByTitleAndCategoryDesc(String title, int category);
 
 
@@ -60,8 +53,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     // Метод сортировки цены
     @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)", nativeQuery = true)
     List<Product> findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(String title, float ot, float Do);
-
-
 
 
     // Метод сортировка цены по возрастанию

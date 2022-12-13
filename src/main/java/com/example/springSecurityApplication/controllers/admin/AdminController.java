@@ -172,7 +172,7 @@ public class AdminController {
             return "product/editProduct";
         }
         productService.updateProduct(id, product);
-        return "redirect:/admin";
+        return "redirect:/product/info/{id}";
     }
 /*-----------------------------------*/
     @GetMapping("/editUser/{id}")

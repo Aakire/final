@@ -34,8 +34,8 @@ public class ProductController {
 
     @PostMapping("/search")
     public String productSearch(@RequestParam("search") String search,
-                                @RequestParam(value = "ot", required = false, defaultValue = "0") String ot,
-                                @RequestParam(value = "do", required = false, defaultValue = "900000") String Do,
+                                @RequestParam(value = "ot", required = false, defaultValue = "") String ot,
+                                @RequestParam(value = "do", required = false, defaultValue = "") String Do,
                                 @RequestParam(value = "price", required = false, defaultValue = "")String price,
                                 @RequestParam(value = "contact", required = false, defaultValue = "") String contact, Model model)
     {

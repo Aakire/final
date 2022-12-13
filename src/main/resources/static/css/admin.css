@@ -68,7 +68,9 @@
     grid-template-columns: 1fr 1fr;
     padding: 30px;
 }
-
+a{
+    text-decoration: none;
+}
 .btnContainer{
     display: grid;
     grid-template-rows: 1fr 1fr;
