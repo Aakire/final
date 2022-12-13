@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" href="../../static/css/index.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/product.css}" href="../../static/css/product.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/card.css}" href="../../static/css/card.css">
+</head>
+<body>
+<header>
+    <a th:href="@{../index}">
+        <h1 class="logo">ROBO</h1>
+    </a>
+    <nav>
+        <a th:href="@{../orders}">
+            <button class="navItem">
+                Мои заказы
+            </button>
+        </a>
+        <a th:href="@{/cart}">
+            <button class="navItem">
+                Корзина
+            </button>
+        </a>
+        <div th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
+             <span th:case="${false}">
+                  <a class="" href="/authentication"><button class="navItem">Войти</button></a>
+             </span>
+            <form th:case="${true}" method="post" th:action="@{/logout}">
+                <button class="navItem">Выйти</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<section class="main">
+<div class="filterBlock">
+    <form th:method="POST" th:action="@{/product/search}" >
+        <legend>Выберите параметр для сортировки: </legend>
+        <fieldset>
+            <div class="searchBlock">
+                <div class="fieldBlock">
+                    <div>
+                        <label for="search">Наименование товара: </label>
+                        <input name="search" id="search" th:value="*{value_search}">
+                    </div>
+                    <div>
+                        <label for="ot">Цена,  ₽: от</label>
+                        <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
+                        <label for="do">до</label>
+                        <input type="text" name="do" id="do" th:value="*{value_price_do}">
+                    </div>
+                </div>
+
+                <div class="sortBlock">
+                    <div class="sortFields">
+                        <div>
+                            <label for="ascending_price">Отсортировать по возрастанию цены</label>
+                            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price" checked>
+                        </div>
+                        <div>
+                            <label for="descending_price">Отсортировать по убыванию цены</label>
+                            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+                        </div>
+                    </div>
+                    <div>
+                        <p>Возрастная категория: </p>
+                        <div class="categoryBlock">
+                            <div>
+                                <label for="junior">Дошкольники 3+</label>
+                                <input type="radio" id="junior" name="contact" value="junior">
+                            </div>
+                            <div>
+                                <label for="middle">Начальная школа 5+</label>
+                                <input type="radio" id="middle" name="contact" value="middle">
+                            </div>
+                            <div>
+                                <label for="clothes">Средняя школа 10+</label>
+                                <input type="radio" id="clothes" name="contact" value="senior">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <input type="submit" value="Применить" class="searchBtn">
+        </fieldset>
+    </form>
+</div>
+<div class="searchedProduct">
+    <h3 class="nameBlock"> Просмотр товаров: </h3>
+    <div class="productBlock">
+
+        <div th:each="product : ${search_product}" class="productItem">
+            <img th:src="'/img/' + ${product.imageList[0].getFileName()}" class="productImg">
+
+            <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+
+            <div class="productPrice">
+                <p class="price">Цена: <br />
+                    <span th:text="${product.getPrice()} + ' ₽'"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+<footer>
+    <div><h1 class="logo">ROBO</h1></div>
+    <div class="adress">
+        <h2>Офис в Москве</h2>
+        <p> Набережная ул., д. 15 офис 18</p>
+        <h3>Телефон:  <span>+7 (945) 945-55-70</span></h3>
+        <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
+    </div>
+    <div class="adress">
+        <h2>Офис в Новосибирске</h2>
+        <p> Лесная ул., д. 17</p>
+        <h3>Телефон:  <span>+7 (383) 730-19-83</span></h3>
+        <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
+    </div>
+    <div class="adress">
+        <h2>Офис в Владивостоке</h2>
+        <p>  Заводская ул., д. 12 офис 5</p>
+        <h3>Телефон:  <span>+7 (923) 885-24-93</span></h3>
+        <h3>График работы:  <span>Понедельник-Пятница 9:00 - 18:00</span></h3>
+    </div>
+</footer>
+</body>
+<script type="text/javascript" th:src="@{/js/index.js}" src="../../static/js/index.js"></script>
+</html>
