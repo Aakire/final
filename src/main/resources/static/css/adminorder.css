@@ -90,3 +90,9 @@ option{
     background-color: var(--backcolor_2);
     color: var(--color_1);
 }
+
+.viewOrderContainer{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    padding-right: 50px;
+}

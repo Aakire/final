@@ -56,7 +56,7 @@
                     <div class="sortFields">
                         <div>
                             <label for="ascending_price">Отсортировать по возрастанию цены</label>
-                            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+                            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price" checked>
                         </div>
                         <div>
                             <label for="descending_price">Отсортировать по убыванию цены</label>
@@ -87,25 +87,9 @@
         </fieldset>
     </form>
 </div>
-<div class="searchedProduct">
-    <h3 class="nameBlock">Результат: </h3>
-    <div class="productBlock">
 
-        <div th:each="product : ${search_product}" class="productItem">
-            <img th:src="'/img/' + ${product.imageList[0].getFileName()}" class="productImg">
-
-            <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-
-            <div class="productPrice">
-                <p class="price">Цена: <br />
-                    <span th:text="${product.getPrice()} + ' ₽'"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="allProduct">
-    <h3 class="nameBlock"> Все товары: </h3>
+    <h3 class="nameBlock"> Перечень всех товаров: </h3>
     <div class="productBlock">
         <div th:each="product : ${products}" class="productItem">
             <img th:src="'/img/' + ${product.imageList[0].getFileName()}" class="productImg">

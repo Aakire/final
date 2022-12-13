@@ -12,22 +12,64 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     // Находим продукты по части наименования без учета регистра
     List<Product> findByTitleContainingIgnoreCase(String name);
 
-    @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)", nativeQuery = true)
-    List<Product> findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(String title, float ot, float Do);
 
+    //БЕЗ КАТЕГОРИИ!!!!! + ДИАПАЗОН
     // Поиск по наименованию, фильтрация по диапазону цены, сортировка по возрастанию цены
     @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3) order by  price", nativeQuery = true)
-    List<Product> findByTitleOrderByPriceAsc(String title, float ot, float Do);
+    List<Product> findByTitlePriceAsc(String title, float ot, float Do);
 
     // Поиск по наименованию, фильтрация по диапазону цены, сортировка по убыванию цены
     @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3) order by  price desc ", nativeQuery = true)
-    List<Product> findByTitleOrderByPriceDest(String title, float ot, float Do);
+    List<Product> findByTitlePriceDesc(String title, float ot, float Do);
 
+
+
+    //КАТЕГОРИЯ + ДИАПАЗОН!!!!
     // Поиск по наименованию,по категории,  фильтрация по диапазону цены, сортировка по возрастанию цены
-    @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3) order by  price", nativeQuery = true)
-    List<Product> findByTitleAndCategoryOrderByPriceAsc(String title, float ot, float Do, int category);
+    //Категория Диапазон по возрастанию
+    @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)  order by  price", nativeQuery = true)
+    List<Product> findByTitleAndCategoryPriceAsc(String title, float ot, float Do, int category);
 
     // Поиск по наименованию,по категории,  фильтрация по диапазону цены, сортировка по убыванию цены
+    //Категория Диапазон по убыванию
     @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3) order by  price desc ", nativeQuery = true)
-    List<Product> findByTitleAndCategoryOrderByPriceDesc(String title, float ot, float Do, int category);
+    List<Product> findByTitleAndCategoryPriceDesc(String title, float ot, float Do, int category);
+
+
+    //КАТЕГОРИЯ БЕЗ ДИАПАЗОНА!!!!!
+    @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price", nativeQuery = true)
+    List<Product> findByTitleAndCategoryAsc(String title, int category);
+
+    // Поиск по наименованию,по категории,  фильтрация по диапазону цены, сортировка по убыванию цены
+    //Категория Диапазон по убыванию
+    @Query(value = "select * from product where category_id=?4 and ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price desc ", nativeQuery = true)
+    List<Product> findByTitleAndCategoryDesc(String title, int category);
+
+
+    //!!!ПО Возврастанию и убыванию
+    @Query(value = "select * from product where  ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price", nativeQuery = true)
+    List<Product> findByTitleAsc(String title);
+    @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) order by  price desc ", nativeQuery = true)
+    List<Product> findByTitleDesc(String title);
+
+
+    // По категории
+    @Query(value = "select * from product where category_id=?1", nativeQuery = true)
+    List<Product> findByCategory(int category);
+
+    // Метод сортировки цены
+    @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') or (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)", nativeQuery = true)
+    List<Product> findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(String title, float ot, float Do);
+
+
+
+
+    // Метод сортировка цены по возрастанию
+    @Query(value = "select * from product order by price asc", nativeQuery = true)
+    List<Product> OrderByPriceAsc(String name);
+
+    // Метод сортировка цены по убыванию
+    @Query(value = "select * from product order by price desc", nativeQuery = true)
+    List<Product> OrderByPriceDesc(String name);
 }
+

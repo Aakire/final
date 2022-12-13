@@ -31,6 +31,14 @@
             <label for="role">Роль пользователя: </label>
             <input type="text" th:field="*{role}" placeholder="роль"  name="role" id="role">
         </div>
+        <!--<div>
+        <label for="role" >Сменить статус заказа: </label>
+        <select name="role" th:field="*{role}" id="role">
+            <div th:each="element : ${role}">
+                <option th:text="${element.getName()}" th:value="${element.getId()}"></option>
+            </div>
+        </select>
+        </div>-->
         <button type="submit" class="submitBtn">Сохранить</button>
     </form>
 </div>

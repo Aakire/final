@@ -4,7 +4,9 @@ package com.example.springSecurityApplication.services;
 import com.example.springSecurityApplication.enumm.Status;
 import com.example.springSecurityApplication.models.Order;
 
+import com.example.springSecurityApplication.models.Product;
 import com.example.springSecurityApplication.repositories.OrderRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +36,11 @@ public class OrderService {
         List <Status> statusList = List.of(Status.values());
         return statusList;
     }
+
+    public List<Order> findByLastNumberSymbols(String lastSymbols){
+        return orderRepository.findByLastNumberSymbols(lastSymbols);
+    }
+
 
     @Transactional
     public void deleteOrder(int id) {

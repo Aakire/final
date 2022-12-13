@@ -33,49 +33,86 @@ public class ProductController {
     }
 
     @PostMapping("/search")
-    public String productSearch(@RequestParam("search") String search, @RequestParam("ot") String ot, @RequestParam("do") String Do, @RequestParam(value = "price", required = false, defaultValue = "")String price, @RequestParam(value = "contact", required = false, defaultValue = "")String contact, Model model){
-        if(!ot.isEmpty() & !Do.isEmpty()){
-            if(!price.isEmpty()){
-                if(price.equals("sorted_by_ascending_price")){
-                    if(!contact.isEmpty())
-                    {
-                        if(contact.equals("junior")){
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 1));
-                        } else if(contact.equals("middle")){
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 2));
-                        }else if(contact.equals("senior")){
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 3));
-                        }
-                    }
-                }
-                else if (price.equals("sorted_by_descending_price")){
-                    if(!contact.isEmpty())
-                    {
-                        if(contact.equals("junior")){
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 1));
-                        } else if(contact.equals("middle")){
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 2));
-                        }else if(contact.equals("senior")){
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 3));
-                        }
-                    }
-                }
-            } else {
-                model.addAttribute("search_product", productRepository.findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(search, Float.parseFloat(ot), Float.parseFloat(Do)));
+    public String productSearch(@RequestParam("search") String search,
+                                @RequestParam(value = "ot", required = false, defaultValue = "0") String ot,
+                                @RequestParam(value = "do", required = false, defaultValue = "900000") String Do,
+                                @RequestParam(value = "price", required = false, defaultValue = "")String price,
+                                @RequestParam(value = "contact", required = false, defaultValue = "") String contact, Model model)
+    {
+        //ПО ВОЗВРАСТАНИЮ
+        if(price.equals("sorted_by_ascending_price")){
 
+            //С ДИАПАЗОНОМ!!!
+            if(!ot.isEmpty() & !Do.isEmpty()){
+                if(!contact.isEmpty())
+                {
+                    if(contact.equals("junior")){
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 1));
+                    } else if(contact.equals("middle")){
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 2));
+                    }else if(contact.equals("senior")){
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryPriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 3));
+                    }
+                }
+                else {
+                    model.addAttribute("search_product", productRepository.findByTitlePriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do)));
+                }
+                //БЕЗ ДИАПАЗОНА
+            }else {
+                if (!contact.isEmpty()) {
+                    if (contact.equals("junior")) {
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryAsc(search.toLowerCase(), 1));
+                    } else if (contact.equals("middle")) {
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryAsc(search.toLowerCase(), 2));
+                    } else if (contact.equals("senior")) {
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryAsc(search.toLowerCase(), 3));
+                    }
+                } else {
+                    model.addAttribute("search_product", productRepository.findByTitleAsc(search.toLowerCase()));
+                }
+            }
+
+        //ПО УБЫВАНИЮ!!!
+        } else if (price.equals("sorted_by_descending_price")){
+            //С ДИАПАЗОНОМ!!!
+            if(!ot.isEmpty() & !Do.isEmpty()){
+                if(!contact.isEmpty())
+                {
+                    if(contact.equals("junior")){
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 1));
+                    } else if(contact.equals("middle")){
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 2));
+                    }else if(contact.equals("senior")){
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryPriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do), 3));
+                    }
+                }
+                else {
+                    model.addAttribute("search_product", productRepository.findByTitlePriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do)));
+                }
+                //БЕЗ ДИАПАЗОНА
+            }else {
+                if (!contact.isEmpty()) {
+                    if (contact.equals("junior")) {
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryDesc(search.toLowerCase(), 1));
+                    } else if (contact.equals("middle")) {
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryDesc(search.toLowerCase(), 2));
+                    } else if (contact.equals("senior")) {
+                        model.addAttribute("search_product", productRepository.findByTitleAndCategoryDesc(search.toLowerCase(), 3));
+                    }
+                } else {
+                    model.addAttribute("search_product", productRepository.findByTitleDesc(search.toLowerCase()));
+                }
             }
         }
-        else {
-            model.addAttribute("search_product", productRepository.findByTitleContainingIgnoreCase(search));
-        }
-
         model.addAttribute("value_search", search);
         model.addAttribute("value_price_ot", ot);
         model.addAttribute("value_price_do", Do);
         model.addAttribute("products", productService.getAllProduct());
-        return "/product/product";
-
+        return "/product/search";
     }
+
+
+
 
     @PostMapping("/searchByName")
     public String productSearchByName(@RequestParam("search") String search, Model model){
@@ -86,5 +123,6 @@ public class ProductController {
         return "/admin/admin";
 
     }
-
 }
+
+

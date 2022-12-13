@@ -18,6 +18,25 @@
         <button type="submit" class="logout">Выйти из личного кабинета</button>
     </form>
 </div>
+<div class="adminProductPanel">
+
+    <form th:method="POST" th:action="@{/admin/searchByNumber}" >
+        <fieldset>
+            <div class="searchByName">
+                <label for="search">Введите последние 4 цифры номера заказа: </label>
+                <input name="search" id="search" th:value="*{value_search}">
+            </div>
+            <input type="submit" value="Применить" class="submitBtn">
+        </fieldset>
+    </form>
+
+    <div class="btnContainer">
+        <a href="../product" ><button class="adminBtn" >Смотреть товары</button></a>
+        <a href="/admin/order" ><button class="adminBtn" >Просмотр заказов</button></a>
+    </div>
+</div>
+
+
 
 <div class="ordersContainer">
     <h1 class="ordersBlockTittle">Посмотреть заказы: </h1>
@@ -29,8 +48,20 @@
         <br>
         <br>
     </div>
-    <div th:each="order : ${order}" class="ordersBlock" >
-        <div class="listOfAllOrders">
+    <div th:each="order : ${search_order}" class="listOfAllOrders">
+        <p class="OrderText" th:text="${order.getNumber()}"></p>
+        <p class="orderText" th:text="${order.getPerson().getLogin()}"></p>
+        <p class="orderText" th:text="${order.getStatus()}"></p>
+        <p class="orderText" th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">
+        </p>
+        <a th:href="@{/admin/viewOrder/{id}(id=${order.getId})}">
+            <button class="editOrderBtn">Просмотр заказа</button>
+        </a>
+        <a th:href="@{/admin/deleteOrder/{id}(id=${order.getId})}">
+            <button class="editOrderBtn">Удалить заказ</button>
+        </a>
+    </div>
+    <div th:each="order : ${order}" class="listOfAllOrders" >
             <p class="OrderText" th:text="${order.getNumber()}"></p>
             <p class="orderText" th:text="${order.getPerson().getLogin()}"></p>
             <p class="orderText" th:text="${order.getStatus()}"></p>
@@ -42,7 +73,6 @@
             <a th:href="@{/admin/deleteOrder/{id}(id=${order.getId})}">
                 <button class="editOrderBtn">Удалить заказ</button>
             </a>
-        </div>
     </div>
 </div>
 </body>

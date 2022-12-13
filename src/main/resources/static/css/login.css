@@ -57,10 +57,12 @@ a{
     margin: 0px;
     text-align: center;
     padding: 0px;
+
 }
 
 #active{
     background-color: var(--fontcolor);
+    border: none;
 }
 
 #unactive{
@@ -77,6 +79,7 @@ a{
 }
 
 #wrapper{
+    color: var(--color_1);
 
 }
 
@@ -110,8 +113,8 @@ a{
 }
 #signin  input[type="text"], #signin  input[type="password"], #signin button[type="submit"]{
     background: rgb(28, 30, 33);
-    box-shadow: inset -100px -100px 0 rgb(28, 30, 33); /*Prevent yellow autofill color*/
-    color: rgb(73, 78, 85);
+    box-shadow: inset -100px -100px 0 rgb(28, 30, 33);
+    color: var(--color_1);
 }
 #signin  input[type="text"], #signin  input[type="password"]{
     position: relative;
@@ -123,9 +126,10 @@ a{
     top: -2px;
     padding: 0 0 0 20px;
     font-weight: 700;
+    color: var(--color_1);
 }
 #signin  input[type="text"]:focus, #signin  input[type="password"]:focus{
-    color: rgb(255, 255, 255);
+    color: var(--color_1);
 }
 #signin button[type="submit"]{
     display: block;
@@ -151,14 +155,14 @@ a{
     cursor: pointer;
 }
 #signin p {
-    color: rgb(79, 85, 97);
+    color: var(--color_1);
     padding: 0 20px;
     font-weight: 700;
     font-size: 12px;
     margin: 5px 0 0 0;
 }
 #signin p > a{
-    color: rgb(111, 119, 135);
+    color: var(--color_1);
     text-decoration: none;
 }
 #signin p > a:hover{

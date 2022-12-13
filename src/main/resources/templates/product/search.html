@@ -13,10 +13,8 @@
         <h1 class="logo">ROBO</h1>
     </a>
     <nav>
-        <a th:href="@{../orders}">
-            <button class="navItem">
-                Мои заказы
-            </button>
+        <a th:href="@{/product}">
+            <button class="navItem">Все товары</button>
         </a>
         <a th:href="@{/cart}">
             <button class="navItem">
@@ -51,7 +49,6 @@
                         <input type="text" name="do" id="do" th:value="*{value_price_do}">
                     </div>
                 </div>
-
                 <div class="sortBlock">
                     <div class="sortFields">
                         <div>
@@ -81,14 +78,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <input type="submit" value="Применить" class="searchBtn">
         </fieldset>
     </form>
 </div>
 <div class="searchedProduct">
-    <h3 class="nameBlock"> Просмотр товаров: </h3>
+    <h3 class="nameBlock"> Результаты поиска: </h3>
     <div class="productBlock">
 
         <div th:each="product : ${search_product}" class="productItem">

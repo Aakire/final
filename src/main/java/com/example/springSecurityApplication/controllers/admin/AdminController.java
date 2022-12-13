@@ -35,9 +35,7 @@ public class AdminController {
     private final ProductService productService;
     private final CategoryRepository categoryRepository;
     private final PersonService personService;
-
     private final OrderService orderService;
-
 
     @Autowired
     public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderRepository orderRepository, OrderService orderService) {
@@ -227,14 +225,14 @@ public class AdminController {
         return "/admin/order";
     }
 
-
+    @PostMapping("/searchByNumber")
+    public String productSearchByName(@RequestParam("search")  String lastSymbols, Model model){
+        model.addAttribute("search_order", orderService.findByLastNumberSymbols(lastSymbols));
+        model.addAttribute("value_search", lastSymbols);
+        model.addAttribute("orders", orderService.getAllOrders());
+        return "/admin/order";
+    }
 }
 
-/*
-    @PostMapping("/viewOrder/{id}")
-    public String updateOrderStatus(@RequestParam(value = "status_set")String status_set, Model model, @ModelAttribute("order") Order order, @PathVariable("id") int id ){
-        orderService.updateOrderStatus(id, order, Status.valueOf(status_set));
-        return "redirect:/admin/order";
-    }
- */
+
 
