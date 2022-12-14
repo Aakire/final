@@ -97,6 +97,12 @@
                 <p class="price">Цена: <br />
                     <span th:text="${product.getPrice()} + ' ₽'"></span>
                 </p>
+                <a th:href="@{/cart/add/{id}(id=${product.getId()})}">
+                    <button class="offCart" >
+                        <span class="cartBtnText">В корзину</span>
+                        <img class="imgCart" src="/img/cart-1.png" alt='product img' />
+                    </button>
+                </a>
             </div>
         </div>
     </div>

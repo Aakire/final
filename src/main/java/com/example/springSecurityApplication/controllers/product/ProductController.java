@@ -39,10 +39,10 @@ public class ProductController {
                                 @RequestParam(value = "price", required = false, defaultValue = "")String price,
                                 @RequestParam(value = "contact", required = false, defaultValue = "") String contact, Model model)
     {
-        //ПО ВОЗВРАСТАНИЮ
+        //ПО ВОЗВРАСТАНИЮ!!
         if(price.equals("sorted_by_ascending_price")){
 
-            //С ДИАПАЗОНОМ!!!
+            //С ДИАПАЗОНОМ!!
             if(!ot.isEmpty() & !Do.isEmpty()){
                 if(!contact.isEmpty())
                 {
@@ -57,7 +57,7 @@ public class ProductController {
                 else {
                     model.addAttribute("search_product", productRepository.findByTitlePriceAsc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do)));
                 }
-                //БЕЗ ДИАПАЗОНА
+                //БЕЗ ДИАПАЗОНА!!
             }else {
                 if (!contact.isEmpty()) {
                     if (contact.equals("junior")) {
@@ -89,7 +89,7 @@ public class ProductController {
                 else {
                     model.addAttribute("search_product", productRepository.findByTitlePriceDesc(search.toLowerCase(), Float.parseFloat(ot), Float.parseFloat(Do)));
                 }
-                //БЕЗ ДИАПАЗОНА
+                //БЕЗ ДИАПАЗОНА!!
             }else {
                 if (!contact.isEmpty()) {
                     if (contact.equals("junior")) {
@@ -110,9 +110,6 @@ public class ProductController {
         model.addAttribute("products", productService.getAllProduct());
         return "/product/search";
     }
-
-
-
 
     @PostMapping("/searchByName")
     public String productSearchByName(@RequestParam("search") String search, Model model){
